@@ -12,11 +12,11 @@
         <Label x:Name="labOngletCatalogue" Content="Catalogue" HorizontalAlignment="Center" Margin="0,82,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF5E6D3" FontFamily="Garamond" FontSize="16"/>
         <Label x:Name="labOngletCommandes" Content="Commande" HorizontalAlignment="Left" Margin="524,82,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF5E6D3" FontFamily="Garamond" FontSize="16"/>
         <TextBox x:Name="txtboxRecherche" HorizontalAlignment="Center" Margin="0,202,0,0" TextWrapping="Wrap" Text="Rechercher" VerticalAlignment="Top" Width="348" Foreground="#FF737171" FontFamily="Garamond" Height="28" FontSize="24" TextAlignment="Justify"/>
-        <Image x:Name="iconLogOut" Margin="760,84,16,342" Source="/Icon/se-deconnecter.png" Stretch="Fill"/>
-        <Image x:Name="iconUtilisateur" Margin="740,10,10,390" Source="/Icon/utilisateur.png" Stretch="Fill"/>
+        <Image x:Name="iconLogOut" Margin="0,84,16,0" Source="/Icon/se-deconnecter.png" Stretch="Fill" HorizontalAlignment="Right" Width="24" Height="24" VerticalAlignment="Top"/>
+        <Image x:Name="iconUtilisateur" Margin="0,10,10,0" Source="/Icon/utilisateur.png" Stretch="Fill" HorizontalAlignment="Right" Width="50" Height="50" VerticalAlignment="Top"/>
         <Label x:Name="labNomUtilisateur" Content="Un nom" HorizontalAlignment="Left" Margin="740,56,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF5E6D3" FontFamily="Garamond"/>
 
-        <DataGrid x:Name="dgProduits"  IsReadOnly="True" ItemsSource="{Binding Produits}" AutoGenerateColumns="False" Margin="74,258,74,-332" BorderBrush="Black" Background="White"   >
+        <DataGrid x:Name="dgProduits"   IsReadOnly="True" ItemsSource="{Binding Produits}"  Margin="50,256,50,0" Width="700" AutoGenerateColumns="False" BorderBrush="Black" Background="White" Height="215" VerticalAlignment="Top"   >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nom" Binding="{Binding Nom, ValidatesOnExceptions=true}" Width="*"/>
                 <DataGridTextColumn Header="Catégorie" Binding="{Binding Categorie, ValidatesOnExceptions=true}" Width="*"/>
@@ -24,6 +24,8 @@
                 <DataGridTextColumn Header="Allergènes" Binding="{Binding Allergenes, ValidatesOnExceptions=true}" Width="*"/>
                 <DataGridTextColumn Header="Disponibilité" Binding="{Binding Disponibilite, ValidatesOnExceptions=true}" Width="*"/>
                 <DataGridTextColumn Header="Nb Parts" Binding="{Binding NbParts, ValidatesOnExceptions=true}" Width="*"/>
+
+
             </DataGrid.Columns>
             <DataGrid.ColumnHeaderStyle>
                 <Style TargetType="DataGridColumnHeader">
@@ -33,12 +35,13 @@
                     <Setter Property="FontSize" Value="20"/>
                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
 
+
                 </Style>
             </DataGrid.ColumnHeaderStyle>
 
         </DataGrid>
-        <Image x:Name="iconLoupe" Margin="548,207,235,225" Source="/Icon/loupe.png" Stretch="Fill"/>
-        <Image x:Name="iconFiltre" Margin="616,201,154,220" Source="/Icon/filtre.png" Stretch="Fill"/>
+        <Image x:Name="iconLoupe" Margin="0,207,235,0" Source="/Icon/loupe.png" Stretch="Fill" HorizontalAlignment="Right" Width="17" Height="18" VerticalAlignment="Top"/>
+        <Image x:Name="iconFiltre" Margin="0,201,154,0" Source="/Icon/filtre.png" Stretch="Fill" HorizontalAlignment="Right" Width="30" Height="29" VerticalAlignment="Top"/>
         <Label x:Name="labTitreCatalogue" Content="Visualiser le catalogue de produits" HorizontalAlignment="Center" Margin="0,139,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="Black" FontFamily="Georgia" FontSize="30"/>
     </Grid>
 </UserControl>

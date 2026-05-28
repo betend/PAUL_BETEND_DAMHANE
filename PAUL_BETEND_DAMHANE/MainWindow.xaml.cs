@@ -27,5 +27,11 @@ namespace PAUL_BETEND_DAMHANE
             UCAuthentification uc = new UCAuthentification(this);
             FondEcran.Content = uc;
         }
+
+        public void AfficheUCCatalogueV()
+        {
+            UCCatalogueV uc = new UCCatalogueV(this);
+            FondEcran.Content = uc;
+        }
     }
 }

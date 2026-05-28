@@ -20,9 +20,11 @@ namespace PAUL_BETEND_DAMHANE
     /// </summary>
     public partial class UCCatalogueV : UserControl
     {
-        public UCCatalogueV()
+        private MainWindow _mainWindow;
+        public UCCatalogueV(MainWindow mainWindow)
         {
             InitializeComponent();
+            _mainWindow = mainWindow;
         }
     }
 }

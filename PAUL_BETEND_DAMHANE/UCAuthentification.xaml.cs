@@ -26,5 +26,10 @@ namespace PAUL_BETEND_DAMHANE
             InitializeComponent();
             _mainWindow = mainWindow;
         }
+
+        private void butConnexion_Click(object sender, RoutedEventArgs e)
+        {
+            _mainWindow.AfficheUCCatalogueV();
+        }
     }
 }

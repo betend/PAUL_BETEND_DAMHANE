@@ -9,8 +9,8 @@
     <Viewbox x:Name="vbMainWindow">
         <Grid x:Name="gridMainWindow" Background="#FFF5E6D3">
 
-            <Rectangle x:Name="rectEntete" Height="55" Stroke="Black" Width="800" Fill="Black" Margin="0,0,0,379"/>
-            <Image x:Name="imgLogo" Source="/Images/LogoPaul.png" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Top" Height="55" Width="61"/>
+            <Rectangle x:Name="rectEntete" Height="74" Stroke="Black" Width="800" Fill="Black" Margin="0,0,0,379"/>
+            <Image x:Name="imgLogo" Source="/Images/LogoPaul.png" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Top" Height="74" Width="74"/>
             <ContentControl x:Name="FondEcran" Content="FondEcran"/>
         </Grid>
     </Viewbox>
