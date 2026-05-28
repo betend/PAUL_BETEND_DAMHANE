@@ -16,7 +16,7 @@
         <Image x:Name="iconUtilisateur" Margin="740,10,10,390" Source="/Icon/utilisateur.png" Stretch="Fill"/>
         <Label x:Name="labNomUtilisateur" Content="Un nom" HorizontalAlignment="Left" Margin="740,56,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF5E6D3" FontFamily="Garamond"/>
 
-        <DataGrid x:Name="dgProduits"  IsReadOnly="True" ItemsSource="{Binding Produits}" AutoGenerateColumns="False" Margin="74,258,74,-332" BorderBrush="Black" Background="White" >
+        <DataGrid x:Name="dgProduits"  IsReadOnly="True" ItemsSource="{Binding Produits}" AutoGenerateColumns="False" Margin="74,258,74,-332" BorderBrush="Black" Background="White"   >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nom" Binding="{Binding Nom, ValidatesOnExceptions=true}" Width="*"/>
                 <DataGridTextColumn Header="Catégorie" Binding="{Binding Categorie, ValidatesOnExceptions=true}" Width="*"/>
