@@ -24,5 +24,7 @@ namespace PAUL_BETEND_DAMHANE
         {
             InitializeComponent();
         }
+
+
     }
 }

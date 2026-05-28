@@ -6,7 +6,39 @@
              xmlns:local="clr-namespace:PAUL_BETEND_DAMHANE"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+    <Grid x:Name="gridUCRechercherClient" OpacityMask="Black">
+        <Rectangle x:Name="rectFondBandeauOnglet" HorizontalAlignment="Center" Height="41" VerticalAlignment="Top" Width="800" Fill="#FF1E1E1E" Margin="0,74,0,0"/>
+        <Label x:Name="labOngletAccueil" Content="Accueil" HorizontalAlignment="Left" Margin="215,82,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF5E6D3" FontFamily="Garamond" FontSize="16"/>
+        <Label x:Name="labOngletCatalogue" Content="Catalogue" HorizontalAlignment="Center" Margin="0,82,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF5E6D3" FontFamily="Garamond" FontSize="16"/>
+        <Label x:Name="labOngletCommandes" Content="Commande" HorizontalAlignment="Left" Margin="524,82,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF5E6D3" FontFamily="Garamond" FontSize="16"/>
+        <TextBox x:Name="txtboxRecherche" HorizontalAlignment="Left" Margin="151,202,0,0" TextWrapping="Wrap" Text="Rechercher" VerticalAlignment="Top" Width="348" Foreground="#FF737171" FontFamily="Garamond" Height="28" FontSize="24" TextAlignment="Justify"/>
+        <Image x:Name="iconLogOut" Margin="0,84,16,0" Source="/Icon/se-deconnecter.png" Stretch="Fill" HorizontalAlignment="Right" Width="24" Height="24" VerticalAlignment="Top"/>
+        <Image x:Name="iconUtilisateur" Margin="0,10,10,0" Source="/Icon/utilisateur.png" Stretch="Fill" HorizontalAlignment="Right" Width="50" Height="50" VerticalAlignment="Top"/>
+        <Label x:Name="labNomUtilisateur" Content="Un nom" HorizontalAlignment="Left" Margin="740,56,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF5E6D3" FontFamily="Garamond"/>
+
+        <DataGrid x:Name="dgProduits"   IsReadOnly="True" ItemsSource="{Binding Produits}"  Margin="50,256,50,0" Width="500" AutoGenerateColumns="False" BorderBrush="Black" Background="White" Height="215" VerticalAlignment="Top"   >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nom" Binding="{Binding Nom, ValidatesOnExceptions=true}" Width="*"/>
+                <DataGridTextColumn Header="Prénom" Binding="{Binding Prenom, ValidatesOnExceptions=true}" Width="*"/>
+                <DataGridTextColumn Header="Téléphone" Binding="{Binding Telephone, ValidatesOnExceptions=true}" Width="*"/>
+                <DataGridTextColumn Header="Mail" Binding="{Binding Mail, ValidatesOnExceptions=true}" Width="*"/>
+
+            </DataGrid.Columns>
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="#FF1E1E1E"/>
+                    <Setter Property="Foreground" Value="#FFF5E6D3"/>
+                    <Setter Property="FontFamily" Value="Garamond"/>
+                    <Setter Property="FontSize" Value="20"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+
+
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+
+        </DataGrid>
+        <Image x:Name="iconLoupe" Margin="0,207,310,0" Source="/Icon/loupe.png" Stretch="Fill" HorizontalAlignment="Right" Width="17" Height="18" VerticalAlignment="Top"/>
+        <Label x:Name="labTitreCatalogue" Content="Rattacher un client à une commande" HorizontalAlignment="Center" Margin="0,139,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="Black" FontFamily="Georgia" FontSize="30"/>
+        <Button Content="Selectionner" HorizontalAlignment="Left" Margin="538,202,0,0" VerticalAlignment="Top" Height="28" Width="110" Background="Black" BorderBrush="{x:Null}" Foreground="White" FontFamily="Garamond" FontSize="16"/>
     </Grid>
 </UserControl>
