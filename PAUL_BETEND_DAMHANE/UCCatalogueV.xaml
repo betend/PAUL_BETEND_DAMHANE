@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="PAUL_BETEND_DAMHANE.Catalogue"
+﻿<UserControl x:Class="PAUL_BETEND_DAMHANE.UCCatalogueV"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -16,9 +16,16 @@
         <Image x:Name="iconUtilisateur" Margin="740,10,10,390" Source="/Icon/utilisateur.png" Stretch="Fill"/>
         <Label x:Name="labNomUtilisateur" Content="Un nom" HorizontalAlignment="Left" Margin="740,56,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF5E6D3" FontFamily="Garamond"/>
 
-        <DataGrid x:Name="dgProduits"  IsReadOnly="True" ItemsSource="{Binding Produits}" AutoGenerateColumns="False" Margin="74,258,74,-332" BorderBrush="Black" Background="White" SelectionChanged="dgProduits_SelectionChanged">
+        <DataGrid x:Name="dgProduits"  IsReadOnly="True" ItemsSource="{Binding Produits}" AutoGenerateColumns="False" Margin="74,258,74,-332" BorderBrush="Black" Background="White" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nom" Binding="{Binding Nom, ValidatesOnExceptions=true}" Width="*"/>
+                <DataGridTextColumn Header="Catégorie" Binding="{Binding Categorie, ValidatesOnExceptions=true}" Width="*"/>
+                <DataGridTextColumn Header="Prix" Binding="{Binding Prix, ValidatesOnExceptions=true}" Width="*"/>
+                <DataGridTextColumn Header="Allergènes" Binding="{Binding Allergenes, ValidatesOnExceptions=true}" Width="*"/>
+                <DataGridTextColumn Header="Disponibilité" Binding="{Binding Disponibilite, ValidatesOnExceptions=true}" Width="*"/>
+                <DataGridTextColumn Header="Nb Parts" Binding="{Binding NbParts, ValidatesOnExceptions=true}" Width="*"/>
+            </DataGrid.Columns>
             <DataGrid.ColumnHeaderStyle>
-
                 <Style TargetType="DataGridColumnHeader">
                     <Setter Property="Background" Value="#FF1E1E1E"/>
                     <Setter Property="Foreground" Value="#FFF5E6D3"/>
@@ -29,19 +36,10 @@
                 </Style>
             </DataGrid.ColumnHeaderStyle>
 
-            <DataGrid.Columns Background="Black" Foreground ="#FFF5E6D3">
-                <DataGridTextColumn Header="Nom" Binding="{Binding Nom, ValidatesOnExceptions=true}" Width="*"/>
-                <DataGridTextColumn Header="Catégorie" Binding="{Binding Categorie, ValidatesOnExceptions=true}" Width="*"/>
-                <DataGridTextColumn Header="Prix" Binding="{Binding Prix, ValidatesOnExceptions=true}" Width="*"/>
-                <DataGridTextColumn Header="Allergènes" Binding="{Binding Allergenes, ValidatesOnExceptions=true}" Width="*"/>
-                <DataGridTextColumn Header="Disponibilité" Binding="{Binding Disponibilite, ValidatesOnExceptions=true}" Width="*"/>
-                <DataGridTextColumn Header="Nb Parts" Binding="{Binding NbParts, ValidatesOnExceptions=true}" Width="*"/>
-
-
-            </DataGrid.Columns>
         </DataGrid>
         <Image x:Name="iconLoupe" Margin="548,207,235,225" Source="/Icon/loupe.png" Stretch="Fill"/>
         <Image x:Name="iconFiltre" Margin="616,201,154,220" Source="/Icon/filtre.png" Stretch="Fill"/>
         <Label x:Name="labTitreCatalogue" Content="Visualiser le catalogue de produits" HorizontalAlignment="Center" Margin="0,139,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="Black" FontFamily="Georgia" FontSize="30"/>
     </Grid>
 </UserControl>
+

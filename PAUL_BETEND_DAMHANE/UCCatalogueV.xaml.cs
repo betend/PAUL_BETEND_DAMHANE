@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace PAUL_BETEND_DAMHANE
 {
     /// <summary>
-    /// Logique d'interaction pour UCCatalogue.xaml
+    /// Logique d'interaction pour UCCatalogueV.xaml
     /// </summary>
-    public partial class UCCatalogue : UserControl
+    public partial class UCCatalogueV : UserControl
     {
-        public UCCatalogue()
+        public UCCatalogueV()
         {
             InitializeComponent();
         }
