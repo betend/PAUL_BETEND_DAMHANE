@@ -9,6 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Icon\croix.png" />
+    <None Remove="Icon\filtre %281%29.png" />
+    <None Remove="Icon\filtre.png" />
+    <None Remove="Icon\loupe.png" />
+    <None Remove="Icon\se-deconnecter.png" />
+    <None Remove="Icon\utilisateur.png" />
     <None Remove="Images\LogoPaul.png" />
   </ItemGroup>
 
@@ -17,6 +23,24 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Icon\croix.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Icon\filtre (1).png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Icon\filtre.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Icon\loupe.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Icon\se-deconnecter.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Icon\utilisateur.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\LogoPaul.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
