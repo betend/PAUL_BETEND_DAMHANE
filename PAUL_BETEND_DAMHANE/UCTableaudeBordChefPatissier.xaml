@@ -6,7 +6,32 @@
              xmlns:local="clr-namespace:PAUL_BETEND_DAMHANE"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+    <Grid x:Name="gridTableauBordC" Background="#FFF5F3F3">
+        <Rectangle x:Name="rectFondBandeauOnglet" HorizontalAlignment="Center" Height="41" VerticalAlignment="Top" Width="800" Fill="#FF1E1E1E" Margin="0,74,0,0"/>
+        <Label x:Name="labOngletAccueil" Content="Accueil" HorizontalAlignment="Left" Margin="215,82,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF5E6D3" FontFamily="Garamond" FontSize="16"/>
+        <Label x:Name="labOngletCatalogue" Content="Catalogue" HorizontalAlignment="Center" Margin="0,82,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF5E6D3" FontFamily="Garamond" FontSize="16"/>
+        <Label x:Name="labOngletCommandes" Content="Commande" HorizontalAlignment="Left" Margin="524,82,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF5E6D3" FontFamily="Garamond" FontSize="16"/>
+        <Image x:Name="iconLogOut" Margin="0,84,16,0" Source="/Icon/se-deconnecter.png" Stretch="Fill" HorizontalAlignment="Right" Width="24" Height="24" VerticalAlignment="Top"/>
+        <Image x:Name="iconUtilisateur" Margin="0,10,10,0" Source="/Icon/utilisateur.png" Stretch="Fill" HorizontalAlignment="Right" Width="50" Height="50" VerticalAlignment="Top"/>
+        <Label x:Name="labNomUtilisateur" Content="login" HorizontalAlignment="Left" Margin="740,56,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF5E6D3" FontFamily="Garamond"/>
+        <Label x:Name="labBonjour" Content="Bonjour login" HorizontalAlignment="Left" Margin="20,130,0,0" VerticalAlignment="Top" FontFamily="Garamond" FontSize="20"/>
+        <Label x:Name="labTableauBord" Content="Tableau de bord" HorizontalAlignment="Center" FontSize="36" FontFamily="Georgia" Margin="0,170,0,0"/>
+        <Label x:Name="labCommandesDuJour" Content="Commandes du jour" HorizontalAlignment="Center" Margin="0,240,0,0" VerticalAlignment="Top" FontFamily="Garamond" FontSize="16"/>
+        <DataGrid x:Name="dgTableauBordC"   IsReadOnly="True" ItemsSource="{Binding TableauBord}"  Margin="0,292,0,0" Width="456" AutoGenerateColumns="False" BorderBrush="Black" Background="White" Height="213" VerticalAlignment="Top" HorizontalAlignment="Center"   >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="IdCommande" Binding="{Binding IdCommande, ValidatesOnExceptions=true}" Width="*"/>
+                <DataGridTextColumn Header="Date de retrait" Binding="{Binding DateRetrait, ValidatesOnExceptions=true}" Width="*"/>
+                <DataGridTextColumn Header="Statut" Binding="{Binding Statut, ValidatesOnExceptions=true}" Width="*"/>
+            </DataGrid.Columns>
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="#FF1E1E1E"/>
+                    <Setter Property="Foreground" Value="#FFF5E6D3"/>
+                    <Setter Property="FontFamily" Value="Garamond"/>
+                    <Setter Property="FontSize" Value="20"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+        </DataGrid>
     </Grid>
 </UserControl>
