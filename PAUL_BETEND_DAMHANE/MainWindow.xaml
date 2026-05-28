@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:PAUL_BETEND_DAMHANE"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Background="#FFFFCF93">
+        <Rectangle HorizontalAlignment="Center" Height="55" Stroke="Black" VerticalAlignment="Top" Width="800" Fill="Black"/>
+        <Image Source="/Images/LogoPaul.png" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Top" Height="55" Width="61"/>
 
     </Grid>
 </Window>
