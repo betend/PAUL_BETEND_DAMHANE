@@ -16,7 +16,7 @@
         <Label x:Name="labNomUtilisateur" Content="login" HorizontalAlignment="Left" Margin="740,56,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF5E6D3" FontFamily="Garamond"/>
         <Label x:Name="labBonjour" Content="Bonjour login" HorizontalAlignment="Left" Margin="20,130,0,0" VerticalAlignment="Top" FontFamily="Garamond" FontSize="20"/>
         <Label x:Name="labTableauBord" Content="Tableau de bord" HorizontalAlignment="Center" FontSize="36" FontFamily="Georgia" Margin="0,170,0,0"/>
-        <Label x:Name="labCommandesDuJour" Content="Commandes du jour" HorizontalAlignment="Center" Margin="0,240,0,0" VerticalAlignment="Top" FontFamily="Garamond" FontSize="16"/>
+        <Label x:Name="labCommandesDuJour" Content="Commandes en attente de validation" HorizontalAlignment="Center" Margin="0,240,0,0" VerticalAlignment="Top" FontFamily="Garamond" FontSize="16"/>
         <DataGrid x:Name="dgTableauBordC"   IsReadOnly="True" ItemsSource="{Binding TableauBord}"  Margin="0,292,0,0" Width="456" AutoGenerateColumns="False" BorderBrush="Black" Background="White" Height="213" VerticalAlignment="Top" HorizontalAlignment="Center"   >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="IdCommande" Binding="{Binding IdCommande, ValidatesOnExceptions=true}" Width="*"/>
