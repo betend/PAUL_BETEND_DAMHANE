@@ -5,7 +5,7 @@ using System.Data;
 using Npgsql;
 
 
-namespace TD3_BindingBDPension.Model
+namespace PAUL_BETEND_DAMHANE.Model
 {
 
     public  class DataAccess

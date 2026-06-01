@@ -16,14 +16,12 @@
         <Image x:Name="iconUtilisateur" Margin="0,10,10,0" Source="/Icon/utilisateur.png" Stretch="Fill" HorizontalAlignment="Right" Width="50" Height="50" VerticalAlignment="Top"/>
         <Label x:Name="labNomUtilisateur" Content="Un nom" HorizontalAlignment="Left" Margin="740,56,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF5E6D3" FontFamily="Garamond"/>
 
-        <DataGrid x:Name="dgProduits"   IsReadOnly="True" ItemsSource="{Binding Produits}"  Margin="50,256,50,0" Width="700" AutoGenerateColumns="False" BorderBrush="Black" Background="White" Height="215" VerticalAlignment="Top"   >
+        <DataGrid x:Name="dgProduits"   IsReadOnly="True" ItemsSource="{Binding lesProduits}"  Margin="50,256,50,0" Width="700" AutoGenerateColumns="False" BorderBrush="Black" Background="White" Height="215" VerticalAlignment="Top"   >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Nom" Binding="{Binding Nom, ValidatesOnExceptions=true}" Width="*"/>
-                <DataGridTextColumn Header="Catégorie" Binding="{Binding Categorie, ValidatesOnExceptions=true}" Width="*"/>
+                <DataGridTextColumn Header="Nom" Binding="{Binding Produit_id, ValidatesOnExceptions=true}" Width="*"/>
                 <DataGridTextColumn Header="Prix" Binding="{Binding Prix, ValidatesOnExceptions=true}" Width="*"/>
-                <DataGridTextColumn Header="Allergènes" Binding="{Binding Allergenes, ValidatesOnExceptions=true}" Width="*"/>
-                <DataGridTextColumn Header="Disponibilité" Binding="{Binding Disponibilite, ValidatesOnExceptions=true}" Width="*"/>
-                <DataGridTextColumn Header="Nb Parts" Binding="{Binding NbParts, ValidatesOnExceptions=true}" Width="*"/>
+                <DataGridTextColumn Header="Disponibilité" Binding="{Binding Est_indisponible, ValidatesOnExceptions=true}" Width="*"/>
+                <DataGridTextColumn Header="Nb Parts" Binding="{Binding Nb_parts, ValidatesOnExceptions=true}" Width="*"/>
 
 
             </DataGrid.Columns>

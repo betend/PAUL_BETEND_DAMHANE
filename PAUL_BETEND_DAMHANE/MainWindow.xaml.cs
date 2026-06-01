@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,11 +17,30 @@ namespace PAUL_BETEND_DAMHANE
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        public GestionPAUL laGestionPaul { get; set; }
         public MainWindow()
         {
+            ChargeData();
             InitializeComponent();
             UCBienvenue uc = new UCBienvenue(this);
             FondEcran.Content = uc;
+        }
+
+        public void ChargeData()
+        {
+
+            try
+            {
+                laGestionPaul = new GestionPAUL("Gestion produit");
+                this.DataContext = laGestionPaul;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Impossible de charger les données. Voir votre admin.");
+                Application.Current.Shutdown();
+            }
+
         }
         public void AfficheUCAuthentification()
         {
