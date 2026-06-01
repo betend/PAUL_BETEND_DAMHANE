@@ -20,11 +20,27 @@ namespace PAUL_BETEND_DAMHANE
     /// </summary>
     public partial class UCCatalogueV : UserControl
     {
+
+        public GestionPAUL laGestionPaul { get; set; }
+
         private MainWindow _mainWindow;
         public UCCatalogueV(MainWindow mainWindow)
         {
+
             InitializeComponent();
             _mainWindow = mainWindow;
+
+        }
+
+
+
+        private void UserControl_Loaded_1(Object sender, RoutedEventArgs e)
+        {
+
+            var gestion = App.Current.MainWindow.DataContext as GestionPAUL;
+            dgProduits.ItemsSource = gestion.LesProduits;
+            MessageBox.Show("Nombre de produits = " + gestion.LesProduits.Count);
+
         }
     }
 }

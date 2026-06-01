@@ -15,14 +15,14 @@ namespace PAUL_BETEND_DAMHANE
 
         public GestionPAUL()
         {
-            lesProduits = new ObservableCollection<Produit>(new Produit().FindAll());
+            LesProduits = new ObservableCollection<Produit>(new Produit().FindAll());
 
         }
         public GestionPAUL(string nom)
         {
 
             this.Nom = nom;
-            this.LesProduits = new ObservableCollection<Produit>(new Produit().FindAll());
+            LesProduits = new ObservableCollection<Produit>(new Produit().FindAll());
 
         }
 
