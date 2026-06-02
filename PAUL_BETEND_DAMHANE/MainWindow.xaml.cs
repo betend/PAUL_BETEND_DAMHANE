@@ -25,6 +25,7 @@ namespace PAUL_BETEND_DAMHANE
             InitializeComponent();
             UCBienvenue uc = new UCBienvenue(this);
             FondEcran.Content = uc;
+            
 
         }
 

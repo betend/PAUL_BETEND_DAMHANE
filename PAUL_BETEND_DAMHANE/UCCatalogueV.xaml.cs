@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PAUL_DAMHANE_BETEND;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,11 +30,22 @@ namespace PAUL_BETEND_DAMHANE
 
             InitializeComponent();
             _mainWindow = mainWindow;
+            dgProduits.Items.Filter = RechercheMotClefProduit;
 
         }
 
+        private bool RechercheMotClefProduit(object obj)
+        {
+            if (String.IsNullOrEmpty(txtboxRecherche.Text))
+                return true;
+            Produit unProduit = obj as Produit;
+            return (unProduit.UneRecette.Recette_nom.StartsWith(txtboxRecherche.Text, StringComparison.OrdinalIgnoreCase));
+        }
 
-
+        private void textMotClefProduit_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(dgProduits.ItemsSource).Refresh();
+        }
 
         private void butOngletCommandes_Click(Object sender, RoutedEventArgs e)
         {
