@@ -25,6 +25,11 @@ namespace PAUL_BETEND_DAMHANE
             InitializeComponent();
         }
 
+        private void UserControl_Loaded(Object sender, RoutedEventArgs e)
+        {
+            var gestion = App.Current.MainWindow.DataContext as GestionPAUL;
+            dgProduits.ItemsSource = gestion.LesClients;
 
+        }
     }
 }

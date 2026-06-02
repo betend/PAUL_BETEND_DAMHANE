@@ -1,16 +1,32 @@
-﻿using System;
+﻿using Npgsql;
+using PAUL_BETEND_DAMHANE.Model;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace PAUL_DAMHANE_BETEND
 {
-    public class Recette
+    public class Recette : ICrud<Recette>
     {
         private int recette_id;
         private string recette_nom;
         private string recette_description;
+        private ObservableCollection<Recette> lesRecettes;
+
+        public Recette()
+        {
+        }
+
+        public Recette(Int32 recette_id, String recette_nom, String recette_description)
+        {
+            this.Recette_id = recette_id;
+            this.Recette_nom = recette_nom;
+            this.Recette_description = recette_description;
+        }
 
         public int Recette_id
         {
@@ -49,6 +65,57 @@ namespace PAUL_DAMHANE_BETEND
             {
                 this.recette_description = value;
             }
+        }
+
+        public ObservableCollection<Recette> LesRecettes
+        {
+            get
+            {
+                return this.lesRecettes;
+            }
+
+            set
+            {
+                this.lesRecettes = value;
+            }
+        }
+
+        public Int32 Create()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Int32 Delete()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Recette> FindAll()
+        {
+            List<Recette> lesRecettes = new List<Recette>();
+            using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select * from recette ;"))
+            {
+                DataTable dt = DataAccess.ExecuteSelect(cmdSelect);
+                foreach (DataRow dr in dt.Rows)
+                    lesRecettes.Add(new Recette((int)dr["recette_id"],
+                   (string)dr["recette_nom"], (string)dr["recette_description"]));
+            }
+            return lesRecettes;
+        }
+
+        public List<Recette> FindBySelection(String criteres)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Read()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Int32 Update()
+        {
+            throw new NotImplementedException();
         }
     }
 }

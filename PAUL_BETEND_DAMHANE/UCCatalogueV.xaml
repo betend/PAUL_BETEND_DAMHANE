@@ -18,11 +18,9 @@
 
         <DataGrid x:Name="dgProduits"   IsReadOnly="True" ItemsSource="{Binding LesProduits}"  Margin="50,256,50,0" Width="700" AutoGenerateColumns="False" BorderBrush="Black" Background="{x:Null}" Height="215" VerticalAlignment="Top"   >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Nom" Binding="{Binding Produit_id, ValidatesOnExceptions=true}" Width="*"/>
+                <DataGridTextColumn Header="Nom" Binding="{Binding UneRecette.Recette_nom, ValidatesOnExceptions=true}" Width="*"/>
                 <DataGridTextColumn Header="Prix" Binding="{Binding Prix, ValidatesOnExceptions=true}" Width="*"/>
-                <DataGridTextColumn Header="Disponibilité" Binding="{Binding Est_indisponible, ValidatesOnExceptions=true}" Width="*"/>
                 <DataGridTextColumn Header="Nb Parts" Binding="{Binding Nb_parts, ValidatesOnExceptions=true}" Width="*"/>
-
 
             </DataGrid.Columns>
             <DataGrid.ColumnHeaderStyle>

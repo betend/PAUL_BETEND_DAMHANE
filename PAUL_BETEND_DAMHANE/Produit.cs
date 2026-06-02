@@ -14,6 +14,8 @@ namespace PAUL_DAMHANE_BETEND
     public class Produit: ICrud<Produit>
     {
         private int produit_id;
+        private int recette_id;
+        private Recette uneRecette;
         private bool est_indisponible;
         private int nb_parts;
         private decimal prix;
@@ -23,9 +25,10 @@ namespace PAUL_DAMHANE_BETEND
         {
         }
 
-        public Produit(Int32 produit_id, Boolean est_indisponible, Int32 nb_parts, Decimal prix)
+        public Produit(Int32 produit_id, int recette_id, Boolean est_indisponible, Int32 nb_parts, Decimal prix)
         {
             this.Produit_id = produit_id;
+            this.Recette_id = recette_id;
             this.Est_indisponible = est_indisponible;
             this.Nb_parts = nb_parts;
             this.Prix = prix;
@@ -96,6 +99,32 @@ namespace PAUL_DAMHANE_BETEND
             }
         }
 
+        public Recette UneRecette
+        {
+            get
+            {
+                return this.uneRecette;
+            }
+
+            set
+            {
+                this.uneRecette = value;
+            }
+        }
+
+        public Int32 Recette_id
+        {
+            get
+            {
+                return this.recette_id;
+            }
+
+            set
+            {
+                this.recette_id = value;
+            }
+        }
+
         public int Create()
         {
             throw new NotImplementedException();
@@ -113,7 +142,7 @@ namespace PAUL_DAMHANE_BETEND
             {
                 DataTable dt = DataAccess.ExecuteSelect(cmdSelect);
                 foreach (DataRow dr in dt.Rows)
-                    lesProduits.Add(new Produit((int)dr["produit_id"],
+                    lesProduits.Add(new Produit((int)dr["produit_id"], (int)dr["recette_id"],
                    (bool)dr["est_indisponible"], (int)dr["nb_parts"], (decimal)dr["prix"]));
             }
             return lesProduits;
