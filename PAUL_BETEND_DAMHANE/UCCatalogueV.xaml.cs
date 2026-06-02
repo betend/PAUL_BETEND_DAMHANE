@@ -34,14 +34,6 @@ namespace PAUL_BETEND_DAMHANE
 
 
 
-        private void UserControl_Loaded_1(Object sender, RoutedEventArgs e)
-        {
-
-            var gestion = App.Current.MainWindow.DataContext as GestionPAUL;
-            dgProduits.ItemsSource = gestion.LesProduits;
-            MessageBox.Show("Nombre de produits = " + gestion.LesProduits.Count);
-
-        }
 
         private void butOngletCommandes_Click(Object sender, RoutedEventArgs e)
         {
@@ -56,6 +48,12 @@ namespace PAUL_BETEND_DAMHANE
         private void butOngletCatalogue_Click(Object sender, RoutedEventArgs e)
         {
             _mainWindow.AfficheUCCatalogueV();
+        }
+
+        private void UserControl_Loaded(Object sender, RoutedEventArgs e)
+        {
+            var gestion = App.Current.MainWindow.DataContext as GestionPAUL;
+            dgProduits.ItemsSource = gestion.LesProduits;
         }
     }
 }

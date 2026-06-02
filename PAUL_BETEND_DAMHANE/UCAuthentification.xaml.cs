@@ -21,6 +21,7 @@ namespace PAUL_BETEND_DAMHANE
     public partial class UCAuthentification : UserControl
     {
         private MainWindow _mainWindow;
+        public event EventHandler LoginReussi;
         public UCAuthentification(MainWindow mainWindow)
         {
             InitializeComponent();
@@ -29,7 +30,14 @@ namespace PAUL_BETEND_DAMHANE
 
         private void butConnexion_Click(object sender, RoutedEventArgs e)
         {
-            _mainWindow.AfficheUCCatalogueV();
+            //if (txtboxLogin.Text == "damhane" && txtboxPassword.Password == "1234")
+            //{
+            //    LoginReussi?.Invoke(this, EventArgs.Empty);
+                _mainWindow.AfficheUCCatalogueV();
+            //}
+            //else
+            //    MessageBox.Show("Identifiants incorrects.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            
         }
     }
 }

@@ -40,5 +40,13 @@ namespace PAUL_BETEND_DAMHANE
         {
             _mainWindow.AfficheUCCatalogueV();
         }
+
+        private void UserControl_Loaded(Object sender, RoutedEventArgs e)
+        {
+            var gestion = App.Current.MainWindow.DataContext as GestionPAUL;
+            dgCommandeV.ItemsSource = gestion.LesCommandes;
+        }
+
+
     }
 }
