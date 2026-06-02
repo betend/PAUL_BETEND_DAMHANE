@@ -16,15 +16,13 @@ using System.Windows.Shapes;
 namespace PAUL_BETEND_DAMHANE
 {
     /// <summary>
-    /// Logique d'interaction pour UCFiltre.xaml
+    /// Logique d'interaction pour UCCommandeV.xaml
     /// </summary>
-    public partial class UCFiltre : UserControl
+    public partial class UCCommandeV : UserControl
     {
-        public UCFiltre()
+        public UCCommandeV()
         {
             InitializeComponent();
         }
-
-
     }
 }

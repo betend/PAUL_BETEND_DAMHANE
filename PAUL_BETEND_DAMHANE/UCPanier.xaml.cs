@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace PAUL_BETEND_DAMHANE
 {
     /// <summary>
-    /// Logique d'interaction pour UCTicketCaisseV.xaml
+    /// Logique d'interaction pour UCPanier.xaml
     /// </summary>
-    public partial class UCTicketCaisseV : UserControl
+    public partial class UCPanier : UserControl
     {
-        public UCTicketCaisseV()
+        public UCPanier()
         {
             InitializeComponent();
         }

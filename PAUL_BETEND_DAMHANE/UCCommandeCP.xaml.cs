@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace PAUL_BETEND_DAMHANE
 {
     /// <summary>
-    /// Logique d'interaction pour UCTableaudeBordVendeur.xaml
+    /// Logique d'interaction pour UCCommandeCP.xaml
     /// </summary>
-    public partial class UCTableaudeBordVendeur : UserControl
+    public partial class UCCommandeCP : UserControl
     {
-        public UCTableaudeBordVendeur()
+        public UCCommandeCP()
         {
             InitializeComponent();
         }
