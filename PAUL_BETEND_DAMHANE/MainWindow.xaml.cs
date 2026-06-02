@@ -69,5 +69,10 @@ namespace PAUL_BETEND_DAMHANE
             UCPanier uc = new UCPanier(this);
             FondEcran.Content = uc;
         }
+        public void AfficheUCRechercherClientV()
+        {
+            UCRechercherClientV uc = new UCRechercherClientV(this);
+            FondEcran.Content = uc;
+        }
     }
 }

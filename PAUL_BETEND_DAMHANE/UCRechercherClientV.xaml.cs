@@ -20,15 +20,17 @@ namespace PAUL_BETEND_DAMHANE
     /// </summary>
     public partial class UCRechercherClientV : UserControl
     {
-        public UCRechercherClientV()
+        private MainWindow _mainWindow;
+        public UCRechercherClientV(MainWindow mainWindow)
         {
             InitializeComponent();
+            _mainWindow = mainWindow;
         }
 
         private void UserControl_Loaded(Object sender, RoutedEventArgs e)
         {
             var gestion = App.Current.MainWindow.DataContext as GestionPAUL;
-            dgProduits.ItemsSource = gestion.LesClients;
+            dgRechercheClient.ItemsSource = gestion.LesClients;
 
         }
     }

@@ -16,6 +16,7 @@
     <None Remove="Icon\se-deconnecter.png" />
     <None Remove="Icon\utilisateur.png" />
     <None Remove="Images\LogoPaul.png" />
+    <None Remove="se-deconnecter.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,6 +45,7 @@
     <Resource Include="Images\LogoPaul.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="se-deconnecter.png" />
   </ItemGroup>
 
 </Project>

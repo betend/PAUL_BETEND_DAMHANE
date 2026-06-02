@@ -47,6 +47,15 @@ namespace PAUL_BETEND_DAMHANE
             dgCommandeV.ItemsSource = gestion.LesCommandes;
         }
 
+        private void butLogOut_Click(Object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Êtes-vous sûr de vouloir vous déconnecter ?", "Confirmation de déconnexion", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                _mainWindow.AfficheUCBienvenue();
+            }
+
+        }
 
     }
 }

@@ -24,7 +24,7 @@ namespace PAUL_BETEND_DAMHANE
             LesProduits = new ObservableCollection<Produit>(new Produit().FindAll());
             LesRecettes = new ObservableCollection<Recette>(new Recette().FindAll());
             LesCommandes = new ObservableCollection<Commande>(new Commande().FindAll());
-            lesClients = new ObservableCollection<Client>(new Client().FindAll());
+            LesClients = new ObservableCollection<Client>(new Client().FindAll());
             foreach (Produit p in LesProduits)
             {
                 p.UneRecette = LesRecettes.SingleOrDefault(r => r.Recette_id == p.Recette_id);
@@ -39,8 +39,9 @@ namespace PAUL_BETEND_DAMHANE
             LesProduits = new ObservableCollection<Produit>(new Produit().FindAll());
             LesRecettes = new ObservableCollection<Recette>(new Recette().FindAll());
             LesCommandes = new ObservableCollection<Commande>(new Commande().FindAll());
-            lesClients = new ObservableCollection<Client>(new Client().FindAll());
-            foreach(Produit p in LesProduits)
+            LesClients = new ObservableCollection<Client>(new Client().FindAll());
+            LesCommandes = new ObservableCollection<Commande>(new Commande().FindAll());
+            foreach (Produit p in LesProduits)
             {
                 p.UneRecette = LesRecettes.SingleOrDefault(r => r.Recette_id == p.Recette_id);
             }
