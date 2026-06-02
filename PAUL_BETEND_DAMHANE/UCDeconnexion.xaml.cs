@@ -20,9 +20,16 @@ namespace PAUL_BETEND_DAMHANE
     /// </summary>
     public partial class UCDeconnexion : UserControl
     {
-        public UCDeconnexion()
+        private MainWindow _mainWindow;
+        public UCDeconnexion(MainWindow mainWindow)
         {
             InitializeComponent();
+            _mainWindow = mainWindow;
+        }
+
+        private void butContinuer_Click(Object sender, RoutedEventArgs e)
+        {
+            _mainWindow.AfficheUCBienvenue();
         }
     }
 }

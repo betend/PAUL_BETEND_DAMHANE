@@ -43,6 +43,11 @@ namespace PAUL_BETEND_DAMHANE
             }
 
         }
+        public void AfficheUCBienvenue()
+        {
+            UCBienvenue uc = new UCBienvenue(this);
+            FondEcran.Content = uc;
+        }
         public void AfficheUCAuthentification()
         {
             UCAuthentification uc = new UCAuthentification(this);
