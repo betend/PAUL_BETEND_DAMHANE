@@ -42,5 +42,20 @@ namespace PAUL_BETEND_DAMHANE
             MessageBox.Show("Nombre de produits = " + gestion.LesProduits.Count);
 
         }
+
+        private void butOngletCommandes_Click(Object sender, RoutedEventArgs e)
+        {
+            _mainWindow.AfficheUCCommandeV();
+        }
+
+        private void butOngletPanier_Click(Object sender, RoutedEventArgs e)
+        {
+            _mainWindow.AfficheUCPanier();
+        }
+
+        private void butOngletCatalogue_Click(Object sender, RoutedEventArgs e)
+        {
+            _mainWindow.AfficheUCCatalogueV();
+        }
     }
 }

@@ -25,7 +25,7 @@ namespace PAUL_BETEND_DAMHANE
             InitializeComponent();
             UCBienvenue uc = new UCBienvenue(this);
             FondEcran.Content = uc;
-            MessageBox.Show(laGestionPaul.LesProduits.Count.ToString());
+
         }
 
         public void ChargeData()
@@ -57,6 +57,16 @@ namespace PAUL_BETEND_DAMHANE
         public void AfficheUCCatalogueV()
         {
             UCCatalogueV uc = new UCCatalogueV(this);
+            FondEcran.Content = uc;
+        }
+        public void AfficheUCCommandeV()
+        {
+            UCCommandeV uc = new UCCommandeV(this);
+            FondEcran.Content = uc;
+        }
+        public void AfficheUCPanier()
+        {
+            UCPanier uc = new UCPanier(this);
             FondEcran.Content = uc;
         }
     }

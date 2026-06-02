@@ -20,9 +20,25 @@ namespace PAUL_BETEND_DAMHANE
     /// </summary>
     public partial class UCCommandeV : UserControl
     {
-        public UCCommandeV()
+        private MainWindow _mainWindow;
+        public UCCommandeV(MainWindow mainWindow)
         {
             InitializeComponent();
+            _mainWindow = mainWindow;
+        }
+        private void butOngletCommandes_Click(Object sender, RoutedEventArgs e)
+        {
+            _mainWindow.AfficheUCCommandeV();
+        }
+
+        private void butOngletPanier_Click(Object sender, RoutedEventArgs e)
+        {
+            _mainWindow.AfficheUCPanier();
+        }
+
+        private void butOngletCatalogue_Click(Object sender, RoutedEventArgs e)
+        {
+            _mainWindow.AfficheUCCatalogueV();
         }
     }
 }
