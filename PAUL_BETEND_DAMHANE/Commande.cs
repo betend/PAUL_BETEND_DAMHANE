@@ -13,6 +13,10 @@ namespace PAUL_DAMHANE_BETEND
     public class Commande : ICrud<Commande>
     {
         private int commande_id;
+        private int client_id;
+        private Client unClient;
+        private CategorieEvenement uneCategorie_evenement;
+        private int categorie_evenement_id;
         private DateOnly date_creation;
         private DateOnly date_retrait;
         private decimal acompte;
@@ -30,6 +34,7 @@ namespace PAUL_DAMHANE_BETEND
         public Commande(Int32 commande_id, DateOnly date_creation, DateOnly date_retrait, decimal accompte, Boolean est_prete, Boolean est_recuperee, Decimal total, DateOnly date_evenement, Int32 nb_personne)
         {
             this.Commande_id = commande_id;
+            
             this.Date_creation = date_creation;
             this.Date_retrait = date_retrait;
             this.Accompte = accompte;
@@ -38,6 +43,12 @@ namespace PAUL_DAMHANE_BETEND
             this.Total = total;
             this.Date_evenement = date_evenement;
             this.Nb_personne = nb_personne;
+        }
+
+        public Commande(Int32 commande_id, DateOnly date_creation, DateOnly date_retrait, Decimal accompte, Boolean est_prete, Boolean est_recuperee, Decimal total, DateOnly date_evenement, Int32 nb_personne, Int32 client_id, Int32 categorie_evenement_id) : this(commande_id, date_creation, date_retrait, accompte, est_prete, est_recuperee, total, date_evenement, nb_personne)
+        {
+            this.Client_id = client_id;
+            this.Categorie_evenement_id = categorie_evenement_id;
         }
 
         public int Commande_id
@@ -170,6 +181,58 @@ namespace PAUL_DAMHANE_BETEND
             }
         }
 
+        public Int32 Client_id
+        {
+            get
+            {
+                return this.client_id;
+            }
+
+            set
+            {
+                this.client_id = value;
+            }
+        }
+
+        public Int32 Categorie_evenement_id
+        {
+            get
+            {
+                return this.categorie_evenement_id;
+            }
+
+            set
+            {
+                this.categorie_evenement_id = value;
+            }
+        }
+
+        public Client UnClient
+        {
+            get
+            {
+                return this.unClient;
+            }
+
+            set
+            {
+                this.unClient = value;
+            }
+        }
+
+        public CategorieEvenement UneCategorie_evenement
+        {
+            get
+            {
+                return this.uneCategorie_evenement;
+            }
+
+            set
+            {
+                this.uneCategorie_evenement = value;
+            }
+        }
+
         public Int32 Create()
         {
             throw new NotImplementedException();
@@ -188,7 +251,7 @@ namespace PAUL_DAMHANE_BETEND
                 DataTable dt = DataAccess.ExecuteSelect(cmdSelect);
                 foreach (DataRow dr in dt.Rows)
                     lesCommandes.Add(new Commande((int)dr["commande_id"],
-                   (DateOnly)dr["date_creation"], (DateOnly)dr["date_retrait"], (decimal)dr["acompte"], (bool)dr["est_prete"], (bool)dr["est_recuperee"], (decimal)dr["total"], (DateOnly)dr["date_evenement"], (int)dr["nb_personne"]));
+                   (DateOnly)dr["date_creation"], (DateOnly)dr["date_retrait"], (decimal)dr["acompte"], (bool)dr["est_prete"], (bool)dr["est_recuperee"], (decimal)dr["total"], (DateOnly)dr["date_evenement"], (int)dr["nb_personne"], (int)dr["client_id"], (int)dr["categorie_evenement_id"]));
             }
             return lesCommandes;
         }

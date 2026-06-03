@@ -22,7 +22,7 @@
 
         <DataGrid x:Name="dgCommandeV"   IsReadOnly="True" ItemsSource="{Binding LesCommandes}"  Margin="100,268,100,0" AutoGenerateColumns="False" BorderBrush="Black" Background="{x:Null}" Height="215" Width ="500" VerticalAlignment="Top"    >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id_commande" Binding="{Binding Commande_id, ValidatesOnExceptions=true}" Width="*"/>
+                <DataGridTextColumn Header="Nom client" Binding="{Binding UnClient.Nom, ValidatesOnExceptions=true}" Width="*"/>
                 <DataGridTextColumn Header="Date_retrait" Binding="{Binding Date_retrait, ValidatesOnExceptions=true}" Width="*"/>
                 <DataGridTextColumn Header="Statut" Binding="{Binding Est_recuperee, ValidatesOnExceptions=true}" Width="*"/>
 

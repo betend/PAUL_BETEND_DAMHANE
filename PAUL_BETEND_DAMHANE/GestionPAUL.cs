@@ -19,19 +19,23 @@ namespace PAUL_BETEND_DAMHANE
 
         private string nom;
 
-        public GestionPAUL()
-        {
-            LesProduits = new ObservableCollection<Produit>(new Produit().FindAll());
-            LesRecettes = new ObservableCollection<Recette>(new Recette().FindAll());
-            LesCommandes = new ObservableCollection<Commande>(new Commande().FindAll());
-            LesClients = new ObservableCollection<Client>(new Client().FindAll());
-            foreach (Produit p in LesProduits)
-            {
-                p.UneRecette = LesRecettes.SingleOrDefault(r => r.Recette_id == p.Recette_id);
-            }
+        //public GestionPAUL()
+        //{
+        //    LesProduits = new ObservableCollection<Produit>(new Produit().FindAll());
+        //    LesRecettes = new ObservableCollection<Recette>(new Recette().FindAll());
+        //    LesCommandes = new ObservableCollection<Commande>(new Commande().FindAll());
+        //    LesClients = new ObservableCollection<Client>(new Client().FindAll());
+        //    foreach (Produit p in LesProduits)
+        //    {
+        //        p.UneRecette = LesRecettes.SingleOrDefault(r => r.Recette_id == p.Recette_id);
+        //    }
 
+        //    foreach (Commande co in LesCommandes)
+        //    {
+        //        co.UnClient = LesClients.SingleOrDefault(client => client.Client_id == co.Client_id);
+        //    }
 
-        }
+        //}
         public GestionPAUL(string nom)
         {
 
@@ -44,6 +48,11 @@ namespace PAUL_BETEND_DAMHANE
             foreach (Produit p in LesProduits)
             {
                 p.UneRecette = LesRecettes.SingleOrDefault(r => r.Recette_id == p.Recette_id);
+            }
+
+            foreach (Commande co in LesCommandes)
+            {
+                co.UnClient = LesClients.SingleOrDefault(client => client.Client_id == co.Client_id);
             }
 
         }
