@@ -10,11 +10,12 @@ namespace PAUL_BETEND_DAMHANE
 {
     public class GestionPAUL
     {
-        public ObservableCollection<Produit> lesProduits;
+        private ObservableCollection<Produit> lesProduits;
         private ObservableCollection<Recette> lesRecettes;
         private ObservableCollection<Commande> lesCommandes;
         private ObservableCollection<Client> lesClients;
         private ObservableCollection<CategorieEvenement> lesCategorieEvenement;
+        private ObservableCollection<LigneCommande> lesLignesCommande;
 
 
         private string nom;
@@ -45,20 +46,20 @@ namespace PAUL_BETEND_DAMHANE
             LesCommandes = new ObservableCollection<Commande>(new Commande().FindAll());
             LesClients = new ObservableCollection<Client>(new Client().FindAll());
             LesCategorieEvenement = new ObservableCollection<CategorieEvenement>(new CategorieEvenement().FindAll());
+
             foreach (Produit p in LesProduits)
             {
                 p.UneRecette = LesRecettes.SingleOrDefault(r => r.Recette_id == p.Recette_id);
+
             }
 
             foreach (Commande co in LesCommandes)
             {
                 co.UnClient = LesClients.SingleOrDefault(client => client.Client_id == co.Client_id);
+                co.UneCategorie_evenement = LesCategorieEvenement.SingleOrDefault(categorieEvenement => categorieEvenement.Categorie_evenement_id == co.Categorie_evenement_id);
+
             }
 
-            foreach (Commande co in LesCommandes)
-            {
-                co.UneCategorie_evenement = LesCategorieEvenement.SingleOrDefault(categorieEvenement => categorieEvenement.Categorie_evenement_id == co.Categorie_evenement_id);
-            }
 
         }
 
@@ -137,6 +138,20 @@ namespace PAUL_BETEND_DAMHANE
             set
             {
                 this.lesCategorieEvenement = value;
+            }
+        }
+
+
+        public ObservableCollection<LigneCommande> LesLignesCommande
+        {
+            get
+            {
+                return this.lesLignesCommande;
+            }
+
+            set
+            {
+                this.lesLignesCommande = value;
             }
         }
     }
