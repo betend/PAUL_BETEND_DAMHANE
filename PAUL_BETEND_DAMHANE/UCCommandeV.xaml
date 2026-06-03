@@ -24,6 +24,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nom client" Binding="{Binding UnClient.Nom, ValidatesOnExceptions=true}" Width="*"/>
                 <DataGridTextColumn Header="Date_retrait" Binding="{Binding Date_retrait, ValidatesOnExceptions=true}" Width="*"/>
+                <DataGridTextColumn Header="Catégorie" Binding="{Binding UneCategorie_evenement.Categorie_evenement_nom, ValidatesOnExceptions=true}" Width="*"/>
                 <DataGridTextColumn Header="Statut" Binding="{Binding Est_recuperee, ValidatesOnExceptions=true}" Width="*"/>
 
             </DataGrid.Columns>

@@ -14,7 +14,7 @@ namespace PAUL_BETEND_DAMHANE
         private ObservableCollection<Recette> lesRecettes;
         private ObservableCollection<Commande> lesCommandes;
         private ObservableCollection<Client> lesClients;
-
+        private ObservableCollection<CategorieEvenement> lesCategorieEvenement;
 
 
         private string nom;
@@ -44,7 +44,7 @@ namespace PAUL_BETEND_DAMHANE
             LesRecettes = new ObservableCollection<Recette>(new Recette().FindAll());
             LesCommandes = new ObservableCollection<Commande>(new Commande().FindAll());
             LesClients = new ObservableCollection<Client>(new Client().FindAll());
-            LesCommandes = new ObservableCollection<Commande>(new Commande().FindAll());
+            LesCategorieEvenement = new ObservableCollection<CategorieEvenement>(new CategorieEvenement().FindAll());
             foreach (Produit p in LesProduits)
             {
                 p.UneRecette = LesRecettes.SingleOrDefault(r => r.Recette_id == p.Recette_id);
@@ -53,6 +53,11 @@ namespace PAUL_BETEND_DAMHANE
             foreach (Commande co in LesCommandes)
             {
                 co.UnClient = LesClients.SingleOrDefault(client => client.Client_id == co.Client_id);
+            }
+
+            foreach (Commande co in LesCommandes)
+            {
+                co.UneCategorie_evenement = LesCategorieEvenement.SingleOrDefault(categorieEvenement => categorieEvenement.Categorie_evenement_id == co.Categorie_evenement_id);
             }
 
         }
@@ -119,6 +124,19 @@ namespace PAUL_BETEND_DAMHANE
             set
             {
                 this.lesClients = value;
+            }
+        }
+
+        public ObservableCollection<CategorieEvenement> LesCategorieEvenement
+        {
+            get
+            {
+                return this.lesCategorieEvenement;
+            }
+
+            set
+            {
+                this.lesCategorieEvenement = value;
             }
         }
     }
