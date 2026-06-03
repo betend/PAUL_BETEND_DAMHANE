@@ -26,21 +26,20 @@ namespace PAUL_BETEND_DAMHANE
         {
             InitializeComponent();
             _mainWindow = mainWindow;
-            //dgCommandeV.Items.Filter = RechercheMotClefChien;
+            dgCommandeV.Items.Filter = RechercheMotClefCommande;
         }
-        //private bool RechercheMotClefChien(object obj)
-        //{
-        //    if (String.IsNullOrEmpty(txtboxRecherche.Text))
-        //        return true;
-        //    Commande uneCommande = obj as Commande;
-        //    return (uneCommande.Commande_id.StartsWith(txtboxRecherche.Text, StringComparison.OrdinalIgnoreCase)
-        //    || uneCommande.Maitre.StartsWith(txtboxRecherche.Text, StringComparison.OrdinalIgnoreCase));
-        //}
+        private bool RechercheMotClefCommande(object obj)
+        {
+            if (String.IsNullOrEmpty(txtboxRecherche.Text))
+                return true;
+            Commande uneCommande = obj as Commande;
+            return (uneCommande.UnClient.Nom.StartsWith(txtboxRecherche.Text, StringComparison.OrdinalIgnoreCase));
+        }
 
-        //private void textMotClefChien_TextChanged(object sender, TextChangedEventArgs e)
-        //{
-        //    CollectionViewSource.GetDefaultView(dgChiens.ItemsSource).Refresh();
-        //}
+        private void textMotClefCommande_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(dgCommandeV.ItemsSource).Refresh();
+        }
         private void butOngletCommandes_Click(Object sender, RoutedEventArgs e)
         {
             _mainWindow.AfficheUCCommandeV();
