@@ -16,6 +16,8 @@ namespace PAUL_DAMHANE_BETEND
         private string recette_nom;
         private string recette_description;
         private ObservableCollection<Recette> lesRecettes;
+        private ObservableCollection<Allergenes> lesAllergenes;
+
 
         public Recette()
         {
@@ -26,6 +28,7 @@ namespace PAUL_DAMHANE_BETEND
             this.Recette_id = recette_id;
             this.Recette_nom = recette_nom;
             this.Recette_description = recette_description;
+            LesAllergenes = new ObservableCollection<Allergenes>(FindAllergenes());
         }
 
         public int Recette_id
@@ -79,6 +82,57 @@ namespace PAUL_DAMHANE_BETEND
                 this.lesRecettes = value;
             }
         }
+
+        public ObservableCollection<Allergenes> LesAllergenes
+        {
+            get
+            {
+                return this.lesAllergenes;
+            }
+
+            set
+            {
+                this.lesAllergenes = value;
+            }
+        }
+
+
+        public List<Allergenes> FindAllergenes()
+
+        {
+
+            List<Allergenes> lesAllergenes = new List<Allergenes>();
+
+            using (NpgsqlCommand cmdSelect = new NpgsqlCommand(
+
+                @"select a.allergene_id, a.allergene_nom
+
+                  from allergene a
+
+                  join recette_allergene ra on ra.allergene_id = a.allergene_id
+
+                  where ra.recette_id = @id"))
+
+            {
+
+                cmdSelect.Parameters.AddWithValue("@id", this.recette_id);
+
+                DataTable dt = DataAccess.ExecuteSelect(cmdSelect);
+
+                foreach (DataRow dr in dt.Rows)
+
+                {
+
+                    lesAllergenes.Add(new Allergenes((int)dr["allergene_id"],dr["allergene_nom"].ToString()));
+
+                }
+
+            }
+
+            return lesAllergenes;
+
+        }
+
 
         public Int32 Create()
         {

@@ -21,6 +21,7 @@
                 <DataGridTextColumn Header="Nom" Binding="{Binding UneRecette.Recette_nom, ValidatesOnExceptions=true}" Width="*"/>
                 <DataGridTextColumn Header="Prix" Binding="{Binding Prix, ValidatesOnExceptions=true}" Width="*"/>
                 <DataGridTextColumn Header="Nb Parts" Binding="{Binding Nb_parts, ValidatesOnExceptions=true}" Width="*"/>
+                <DataGridTextColumn Header="Allergenes" Binding="{Binding AllergeneTexte, ValidatesOnExceptions=true}" Width="*"/>
 
             </DataGrid.Columns>
             <DataGrid.ColumnHeaderStyle>
@@ -43,14 +44,14 @@
                 <ImageBrush ImageSource="/se-deconnecter.png"/>
             </Button.Background>
         </Button>
-        <ComboBox x:Name="cboCategorie" HorizontalAlignment="Left" Margin="112,253,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cboCategorie_SelectionChanged" >
+        <ComboBox x:Name="cboCategorie" HorizontalAlignment="Left" Margin="112,253,0,0" VerticalAlignment="Top" Width="120"  >
             <ComboBoxItem Content="Pains"/>
             <ComboBoxItem Content="Viennoiseries"/>
             <ComboBoxItem Content="Gateaux"/>
             <ComboBoxItem Content="Sales"/>
         </ComboBox>
         <CheckBox x:Name="chkFruitsACoque" Content="Fruits à coque" HorizontalAlignment="Left" Margin="328,242,0,0" VerticalAlignment="Top" FontFamily="Garamond" FontSize="14"/>
-        <CheckBox x:Name="chkGluten" Content="Gluten" HorizontalAlignment="Left" Margin="328,264,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked" FontFamily="Garamond" FontSize="14"/>
+        <CheckBox x:Name="chkGluten" Content="Gluten" HorizontalAlignment="Left" Margin="328,264,0,0" VerticalAlignment="Top" FontFamily="Garamond" FontSize="14"/>
         <CheckBox x:Name="chkLait" Content="Lait" HorizontalAlignment="Left" Margin="456,242,0,0" VerticalAlignment="Top" FontFamily="Garamond" FontSize="14"/>
         <CheckBox x:Name="chkOeuf" Content="Oeuf" HorizontalAlignment="Left" Margin="456,264,0,0" VerticalAlignment="Top" FontFamily="Garamond" FontSize="14"/>
         <CheckBox x:Name="chkSesame" Content="Sesame" HorizontalAlignment="Left" Margin="532,242,0,0" VerticalAlignment="Top" FontFamily="Garamond" FontSize="14"/>

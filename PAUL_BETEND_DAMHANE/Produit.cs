@@ -1,5 +1,6 @@
 ﻿using Npgsql;
 using PAUL_BETEND_DAMHANE.Model;
+using PAUL_DAMHANE_BETEND;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,6 +8,8 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq;
+ 
 
 
 namespace PAUL_DAMHANE_BETEND
@@ -20,7 +23,8 @@ namespace PAUL_DAMHANE_BETEND
         private int nb_parts;
         private decimal prix;
         public ObservableCollection<Produit> lesProduits;
-
+        private ObservableCollection<Allergenes> lesAllergenes;
+        private string allergeneTexte;
         public Produit()
         {
         }
@@ -124,6 +128,77 @@ namespace PAUL_DAMHANE_BETEND
                 this.recette_id = value;
             }
         }
+
+        public ObservableCollection<Allergenes> LesAllergenes
+        {
+            get
+            {
+                return this.lesAllergenes;
+            }
+
+            set
+            {
+                this.lesAllergenes = value;
+            }
+        }
+
+        public string AllergeneTexte
+
+        {
+
+            get
+
+            {
+
+                if (UneRecette == null || UneRecette.LesAllergenes == null || UneRecette.LesAllergenes.Count == 0)
+
+                    return "";
+
+                return string.Join(", ", UneRecette.LesAllergenes.Select(a => a.Allergene_nom));
+
+            }
+
+        }
+
+
+
+
+        public List<Allergenes> FindAllergenes()
+
+        {
+
+            List<Allergenes> lesAllergenes = new List<Allergenes>();
+
+            using (NpgsqlCommand cmdSelect = new NpgsqlCommand(
+
+                @"select a.allergene_id, a.allergene_nom
+
+                from allergene a
+
+                 join produit_allergene pa on pa.allergene_id = a.id_allergene
+
+                 where pa.produit_id = @id"))
+
+            {
+
+                cmdSelect.Parameters.AddWithValue("@id", this.Produit_id);
+
+                DataTable dt = DataAccess.ExecuteSelect(cmdSelect);
+
+                foreach (DataRow dr in dt.Rows)
+
+                {
+
+                    lesAllergenes.Add(new Allergenes((int)dr["allergene_id"], (string)dr["allergene_nom"].ToString()));
+
+                }
+
+            }
+
+            return lesAllergenes;
+
+        }
+
 
         public int Create()
         {
