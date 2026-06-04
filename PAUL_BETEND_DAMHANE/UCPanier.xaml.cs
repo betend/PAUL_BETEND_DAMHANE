@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Collections.Specialized.BitVector32;
 
 namespace PAUL_BETEND_DAMHANE
 {
@@ -61,8 +62,106 @@ namespace PAUL_BETEND_DAMHANE
         private void UserControl_Loaded(Object sender, RoutedEventArgs e)
         {
             var gestion = App.Current.MainWindow.DataContext as GestionPAUL;
-            dgLignes.ItemsSource = gestion.CommandeEnCours.LesLignesCommande;
+            dgPanier.ItemsSource = gestion.CommandeEnCours.LesLignesCommande;
         }
+
+
+        private void BtnPlus_Click(object sender, RoutedEventArgs e)
+
+        {
+
+            LigneCommande ligne = ((FrameworkElement)sender).DataContext as LigneCommande;
+
+            if (ligne != null)
+
+            {
+
+                ligne.Quantite++;
+                RafraichirVue();
+
+            }
+
+        }
+
+        private void BtnMoins_Click(object sender, RoutedEventArgs e)
+
+        {
+
+            LigneCommande ligne = ((FrameworkElement)sender).DataContext as LigneCommande;
+
+            if (ligne != null)
+
+            {
+
+                if (ligne.Quantite > 1)
+
+                    ligne.Quantite--;
+                RafraichirVue();
+                if (ligne.Quantite == 1)
+                {
+
+                    MessageBoxResult result = MessageBox.Show("Voulez-vous supprimer ce produit du panier ?","Confirmation", MessageBoxButton.YesNo,MessageBoxImage.Question);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        var gestion = App.Current.MainWindow.DataContext as GestionPAUL;
+                        gestion.CommandeEnCours.LesLignesCommande.Remove(ligne);
+                    }
+
+          
+                }
+
+            }
+
+
+        }
+
+        private void BtnSupprimer_Click(object sender, RoutedEventArgs e)
+        {
+            LigneCommande ligne = ((FrameworkElement)sender).DataContext as LigneCommande;
+            if (ligne != null)
+            {
+                MessageBoxResult result = MessageBox.Show(
+                    "Voulez-vous supprimer cette ligne du panier ?",
+                    "Confirmation",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question
+                );
+                if (result == MessageBoxResult.Yes)
+                {
+                    var gestion = App.Current.MainWindow.DataContext as GestionPAUL;
+                    gestion.CommandeEnCours.LesLignesCommande.Remove(ligne);
+                }
+            }
+        }
+
+
+        private void BtnViderPanier_Click(object sender, RoutedEventArgs e)
+        {
+            var gestion = App.Current.MainWindow.DataContext as GestionPAUL;
+            
+            if (gestion.CommandeEnCours.LesLignesCommande.Count > 0)
+            {
+                MessageBoxResult result = MessageBox.Show(
+                    "Voulez-vous vider tout le panier ?",
+                    "Confirmation",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question
+                );
+                if (result == MessageBoxResult.Yes)
+                {
+                    gestion.CommandeEnCours.LesLignesCommande.Clear();
+                }
+            }
+        }
+        private void RafraichirVue()
+        {
+            if (dgPanier?.ItemsSource != null)
+            {
+                CollectionViewSource.GetDefaultView(dgPanier.ItemsSource).Refresh();
+            }
+        }
+
+
 
     }
 }

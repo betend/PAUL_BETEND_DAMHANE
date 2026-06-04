@@ -101,7 +101,7 @@ namespace PAUL_BETEND_DAMHANE
         {
             get
             {
-                return this.sous_total;
+                return this.Quantite * this.UnProduit.Prix;
             }
 
             set
