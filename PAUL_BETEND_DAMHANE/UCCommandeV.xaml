@@ -6,12 +6,12 @@
              xmlns:local="clr-namespace:PAUL_BETEND_DAMHANE"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
-    <Grid>
+    <Grid Background="#FFE8CDCD">
         <Rectangle x:Name="rectFondBandeauOnglet" HorizontalAlignment="Center" Height="41" VerticalAlignment="Top" Width="800" Fill="#FF1E1E1E" Margin="0,74,0,0"/>
         <Button x:Name="butOngletCommandes" Content="Commandes" HorizontalAlignment="Left" Margin="202,85,0,0" VerticalAlignment="Top" Background="Transparent" FontFamily="Garamond" Foreground="#FFF5E6D3" BorderBrush="Transparent" FontSize="16" Click="butOngletCommandes_Click"/>
         <Button x:Name="butOngletCatalogue" Content="Catalogue" HorizontalAlignment="Center" Margin="0,85,0,0" VerticalAlignment="Top" Background="Transparent" FontFamily="Garamond" Foreground="#FFF5E6D3" BorderBrush="Transparent" FontSize="16" Click="butOngletCatalogue_Click"/>
         <Button x:Name="butOngletPanier" Content="Panier" HorizontalAlignment="Left" Margin="522,85,0,0" VerticalAlignment="Top" Background="Transparent" FontFamily="Garamond" Foreground="#FFF5E6D3" BorderBrush="Transparent" FontSize="16" Click="butOngletPanier_Click"/>
-        <TextBox x:Name="txtboxRecherche" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="348" Foreground="#FF737171" FontFamily="Garamond" Height="28" FontSize="24" TextAlignment="Justify"  TextChanged="textMotClefCommande_TextChanged"/>
+        <TextBox x:Name="txtboxRecherche" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="348" Foreground="#FF737171" FontFamily="Garamond" Height="28" FontSize="24" TextAlignment="Justify"  TextChanged="textMotClefCommande_TextChanged" Margin="0,187,0,0"/>
         <Button x:Name="butLogOut"  HorizontalAlignment="Left" Margin="765,80,0,0" VerticalAlignment="Top" Height="30" Width="24" BorderBrush="{x:Null}" RenderTransformOrigin="0.417,0.425" Click="butLogOut_Click">
             <Button.Background>
                 <ImageBrush ImageSource="/se-deconnecter.png"/>
@@ -41,8 +41,11 @@
             </DataGrid.ColumnHeaderStyle>
 
         </DataGrid>
-        <Label x:Name="labTitreCommandeV" Content="Visualiser les commandes à restituer" HorizontalAlignment="Center" Margin="0,139,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="Black" FontFamily="Georgia" FontSize="30"/>
+        <Label x:Name="labTitreCommandeV" Content="Visualiser les commandes à restituer" HorizontalAlignment="Center" Margin="0,133,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="Black" FontFamily="Georgia" FontSize="20"/>
         <Button x:Name="butMofifierStatut" Content="&#xE104;" HorizontalAlignment="Left" Margin="740,309,0,0" VerticalAlignment="Top" FontFamily="Segoe MDL2 Assets" Background="#FF1E1E1E" Foreground="#FFF5E6D3" Height="28" Width="32"/>
+        <RadioButton x:Name="rbToutes" Content="Toutes" HorizontalAlignment="Left" Margin="243,232,0,0" VerticalAlignment="Top" Checked="RadioFiltre_Checked"/>
+        <RadioButton x:Name="rbRecuperees" Content="Récupérées" HorizontalAlignment="Left" Margin="342,232,0,0" VerticalAlignment="Top" Checked="RadioFiltre_Checked"/>
+        <RadioButton x:Name="rbNonRecuperees" Content="Non récupérées" HorizontalAlignment="Left" Margin="454,232,0,0" VerticalAlignment="Top" Checked="RadioFiltre_Checked"/>
 
     </Grid>
 </UserControl>
