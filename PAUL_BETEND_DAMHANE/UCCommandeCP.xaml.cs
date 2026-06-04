@@ -20,9 +20,11 @@ namespace PAUL_BETEND_DAMHANE
     /// </summary>
     public partial class UCCommandeCP : UserControl
     {
-        public UCCommandeCP()
+        private MainWindow _mainWindow;
+        public UCCommandeCP(MainWindow mainWindow)
         {
             InitializeComponent();
+            this._mainWindow = mainWindow;
         }
     }
 }

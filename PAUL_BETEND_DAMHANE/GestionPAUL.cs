@@ -18,6 +18,8 @@ namespace PAUL_BETEND_DAMHANE
         private ObservableCollection<CategorieEvenement> lesCategorieEvenement;
         private ObservableCollection<LigneCommande> lesLignesCommande;
         private ObservableCollection<Categorie> lesCategorie;
+        private ObservableCollection<Employe> lesEmployes;
+
         private Commande commandeEnCours;
 
         private string nom;
@@ -51,6 +53,7 @@ namespace PAUL_BETEND_DAMHANE
             LesCategorieEvenement = new ObservableCollection<CategorieEvenement>(new CategorieEvenement().FindAll());
             LesLignesCommande = new ObservableCollection<LigneCommande>(new LigneCommande().FindAll());
             LesCategorie = new ObservableCollection<Categorie>(new Categorie().FindAll());
+            LesEmployes = new ObservableCollection<Employe>(new Employe().FindAll());
             CommandeEnCours = new Commande();
 
             foreach (Produit p in LesProduits)
@@ -209,6 +212,19 @@ namespace PAUL_BETEND_DAMHANE
             set
             {
                 this.lesCategorie = value;
+            }
+        }
+
+        public ObservableCollection<Employe> LesEmployes
+        {
+            get
+            {
+                return this.lesEmployes;
+            }
+
+            set
+            {
+                this.lesEmployes = value;
             }
         }
     }
