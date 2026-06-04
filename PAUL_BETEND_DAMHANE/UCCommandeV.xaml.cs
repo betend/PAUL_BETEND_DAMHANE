@@ -30,7 +30,6 @@ namespace PAUL_BETEND_DAMHANE
             dgCommandeV.Items.Filter = RechercheMotClefCommande; 
         }
 
-        // Méthode de filtrage combinée (TextBox + RadioButtons)
         private bool RechercheMotClefCommande(object obj)
         {
             Commande uneCommande = obj as Commande;
@@ -42,50 +41,154 @@ namespace PAUL_BETEND_DAMHANE
             bool correspondTexte = true;
             if (!String.IsNullOrEmpty(txtboxRecherche.Text))
             {
-                correspondTexte = uneCommande.UnClient.Nom.StartsWith(txtboxRecherche.Text, StringComparison.OrdinalIgnoreCase); 
+                correspondTexte = uneCommande.UnClient.Nom.StartsWith(txtboxRecherche.Text, StringComparison.OrdinalIgnoreCase);
             }
 
             // ==========================================
             // 2. FILTRE RADIOBUTTONS (Statut de récupération)
             // ==========================================
             bool correspondStatut = true;
-
-            // Si le bouton "Récupérées" est coché, on ne garde que les commandes avec est_recuperee == true
             if (rbRecuperees != null && rbRecuperees.IsChecked == true)
             {
                 correspondStatut = (uneCommande.Est_recuperee == true);
             }
-            // Si le bouton "Non récupérées" est coché, on ne garde que les commandes avec est_recuperee == false
             else if (rbNonRecuperees != null && rbNonRecuperees.IsChecked == true)
             {
                 correspondStatut = (uneCommande.Est_recuperee == false);
             }
-            // Note : Si "radToutes" est coché, correspondStatut reste à true (on prend tout)
 
-            // La commande est affichée uniquement si elle valide les deux filtres
-            return correspondTexte && correspondStatut;
+            // ==========================================
+            // 3. FILTRE CHECKBOX (Catégories d'événements)
+            // ==========================================
+            bool correspondCategorie = true;
+
+            // On vérifie d'abord si au moins une CheckBox est cochée
+            bool auMoinsUnFiltreActif =
+                (chkMariage?.IsChecked == true) || (chkAnniversaire?.IsChecked == true) ||
+                (chkBapteme?.IsChecked == true) || (chkNaissance?.IsChecked == true) ||
+                (chkReunion?.IsChecked == true) || (chkPotDepart?.IsChecked == true) ||
+                (chkPortesOuvertes?.IsChecked == true) || (chkFeteReligieuse?.IsChecked == true) ||
+                (chkSeminaire?.IsChecked == true) || (chkBuffetEntreprise?.IsChecked == true);
+
+            // Si au moins une case est cochée, la commande doit correspondre à l'un des choix cochés
+            if (auMoinsUnFiltreActif)
+            {
+                string nomCat = uneCommande.UneCategorie_evenement?.Categorie_evenement_nom;
+
+                // On vérifie si la catégorie de la commande correspond à une CheckBox actuellement cochée
+                bool matchMariage = (chkMariage?.IsChecked == true && string.Equals(nomCat, "Mariage", StringComparison.OrdinalIgnoreCase));
+                bool matchAnniv = (chkAnniversaire?.IsChecked == true && string.Equals(nomCat, "Anniversaire", StringComparison.OrdinalIgnoreCase));
+                bool matchBapteme = (chkBapteme?.IsChecked == true && string.Equals(nomCat, "Baptême", StringComparison.OrdinalIgnoreCase));
+                bool matchNaissance = (chkNaissance?.IsChecked == true && string.Equals(nomCat, "Naissance", StringComparison.OrdinalIgnoreCase));
+                bool matchReunion = (chkReunion?.IsChecked == true && string.Equals(nomCat, "Réunion", StringComparison.OrdinalIgnoreCase));
+                bool matchPot = (chkPotDepart?.IsChecked == true && string.Equals(nomCat, "Pot de départ", StringComparison.OrdinalIgnoreCase));
+                bool matchPortes = (chkPortesOuvertes?.IsChecked == true && string.Equals(nomCat, "Portes ouvertes", StringComparison.OrdinalIgnoreCase));
+                bool matchFete = (chkFeteReligieuse?.IsChecked == true && string.Equals(nomCat, "Fête religieuse", StringComparison.OrdinalIgnoreCase));
+                bool matchSeminaire = (chkSeminaire?.IsChecked == true && string.Equals(nomCat, "Séminaire", StringComparison.OrdinalIgnoreCase));
+                bool matchBuffet = (chkBuffetEntreprise?.IsChecked == true && string.Equals(nomCat, "Buffet entreprise", StringComparison.OrdinalIgnoreCase));
+
+                // Si aucun des choix cochés ne correspond à la commande, on ne l'affiche pas
+                correspondCategorie = (matchMariage || matchAnniv || matchBapteme || matchNaissance ||
+                                       matchReunion || matchPot || matchPortes || matchFete ||
+                                       matchSeminaire || matchBuffet);
+            }
+
+            // ==========================================
+            // 4. FILTRE PAR CALENDRIER (DatePicker)
+            // ==========================================
+            bool correspondDate = true;
+
+            // On vérifie si une date a été sélectionnée dans le calendrier
+            if (dpDateRecherche != null && dpDateRecherche.SelectedDate.HasValue)
+            {
+                // dpDateRecherche.SelectedDate renvoie un DateTime. On le convertit en DateOnly
+                DateOnly dateCalendrier = DateOnly.FromDateTime(dpDateRecherche.SelectedDate.Value);
+
+                // On compare directement avec la date de la commande
+                correspondDate = (uneCommande.Date_retrait == dateCalendrier);
+            }
+            else
+            {
+                // Si le calendrier est vide (aucune date sélectionnée), on affiche toutes les commandes
+                correspondDate = true;
+            }
+
+            // La commande s'affiche si TOUS les filtres actifs sont OK
+            return correspondTexte && correspondStatut && correspondCategorie && correspondDate;
         }
 
-        // Rafraîchissement lors de la saisie de texte
-        private void textMotClefCommande_TextChanged(object sender, TextChangedEventArgs e)
+
+        
+
+        private void CheckBox_Click(object sender, RoutedEventArgs e)
         {
-            RafraichirVue(); 
+            RafraichirVue();
         }
 
-        // Méthode unique appelée au clic de N'IMPORTE QUEL RadioButton
+        private void dpDateRecherche_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            RafraichirVue();
+        }
+
+        // Gestionnaire d'événement unique pour les boutons radio
         private void RadioFiltre_Checked(object sender, RoutedEventArgs e)
         {
             RafraichirVue();
         }
 
-        // Centralisation du rafraîchissement
+        private void textMotClefCommande_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            RafraichirVue();
+        }
+
+        private void txtboxDateRecherche_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            if (textBox == null) return;
+
+            // On sauvegarde la position du curseur
+            int selectionStart = textBox.SelectionStart;
+
+            // On nettoie la chaîne pour ne garder que les chiffres
+            string chiffres = new string(textBox.Text.Where(char.IsDigit).ToArray());
+            string resultat = "";
+
+            // On reconstruit la chaîne avec les slashes automatiquement
+            if (chiffres.Length > 0)
+            {
+                resultat += chiffres.Substring(0, Math.Min(2, chiffres.Length));
+            }
+            if (chiffres.Length > 2)
+            {
+                resultat += "/" + chiffres.Substring(2, Math.Min(2, chiffres.Length - 2));
+            }
+            if (chiffres.Length > 4)
+            {
+                resultat += "/" + chiffres.Substring(4, Math.Min(4, chiffres.Length - 4));
+            }
+
+            // Pour éviter une boucle infinie de TextChanged, on ne met à jour que si c'est différent
+            if (textBox.Text != resultat)
+            {
+                textBox.Text = resultat;
+
+                // On replace le curseur intelligemment au bon endroit
+                textBox.SelectionStart = Math.Min(resultat.Length, selectionStart + (resultat.Length - textBox.Text.Length));
+            }
+
+            // On rafraîchit la DataGrid
+            RafraichirVue();
+        }
+
+        // Centralisation du rafraîchissement automatique
         private void RafraichirVue()
         {
             if (dgCommandeV?.ItemsSource != null)
             {
-                CollectionViewSource.GetDefaultView(dgCommandeV.ItemsSource).Refresh(); 
+                CollectionViewSource.GetDefaultView(dgCommandeV.ItemsSource).Refresh();
             }
         }
+        
 
         private void butOngletCommandes_Click(Object sender, RoutedEventArgs e)
         {
