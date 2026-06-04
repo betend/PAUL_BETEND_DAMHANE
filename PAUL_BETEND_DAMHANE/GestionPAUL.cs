@@ -46,6 +46,7 @@ namespace PAUL_BETEND_DAMHANE
             LesCommandes = new ObservableCollection<Commande>(new Commande().FindAll());
             LesClients = new ObservableCollection<Client>(new Client().FindAll());
             LesCategorieEvenement = new ObservableCollection<CategorieEvenement>(new CategorieEvenement().FindAll());
+            LesLignesCommande = new ObservableCollection<LigneCommande>(new LigneCommande().FindAll());
 
             foreach (Produit p in LesProduits)
             {
@@ -58,6 +59,10 @@ namespace PAUL_BETEND_DAMHANE
                 co.UnClient = LesClients.SingleOrDefault(client => client.Client_id == co.Client_id);
                 co.UneCategorie_evenement = LesCategorieEvenement.SingleOrDefault(categorieEvenement => categorieEvenement.Categorie_evenement_id == co.Categorie_evenement_id);
 
+            }
+            foreach (LigneCommande li in LesLignesCommande)
+            {
+                li.UnProduit = LesProduits.SingleOrDefault(produit => produit.Produit_id == li.Produit_id);
             }
 
 

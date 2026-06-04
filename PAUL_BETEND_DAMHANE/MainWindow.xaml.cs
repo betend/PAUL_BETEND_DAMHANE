@@ -39,7 +39,7 @@ namespace PAUL_BETEND_DAMHANE
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Impossible de charger les données. Voir votre admin.");
+                MessageBox.Show(ex.ToString());
                 Application.Current.Shutdown();
             }
 

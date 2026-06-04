@@ -1,4 +1,6 @@
-﻿using PAUL_BETEND_DAMHANE.Model;
+﻿using Npgsql;
+using PAUL_BETEND_DAMHANE;
+using PAUL_BETEND_DAMHANE.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -6,7 +8,6 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Npgsql;
 
 namespace PAUL_DAMHANE_BETEND
 {
@@ -26,6 +27,7 @@ namespace PAUL_DAMHANE_BETEND
         private DateOnly date_evenement;
         private int nb_personne;
         private ObservableCollection<Commande> lesCommandes;
+        private ObservableCollection<LigneCommande> lesLignesCommande;
 
         public Commande()
         {
@@ -43,6 +45,7 @@ namespace PAUL_DAMHANE_BETEND
             this.Total = total;
             this.Date_evenement = date_evenement;
             this.Nb_personne = nb_personne;
+            lesLignesCommande = new ObservableCollection<LigneCommande>();
         }
 
         public Commande(Int32 commande_id, DateOnly date_creation, DateOnly date_retrait, Decimal accompte, Boolean est_prete, Boolean est_recuperee, Decimal total, DateOnly date_evenement, Int32 nb_personne, Int32 client_id, Int32 categorie_evenement_id) : this(commande_id, date_creation, date_retrait, accompte, est_prete, est_recuperee, total, date_evenement, nb_personne)

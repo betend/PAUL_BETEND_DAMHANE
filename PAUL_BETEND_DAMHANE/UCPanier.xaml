@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PAUL_BETEND_DAMHANE"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
     <Grid>
         <Rectangle x:Name="rectFondBandeauOnglet" HorizontalAlignment="Center" Height="41" VerticalAlignment="Top" Width="800" Fill="#FF1E1E1E" Margin="0,74,0,0"/>
         <Button x:Name="butOngletCommandes" Content="Commandes" HorizontalAlignment="Left" Margin="202,85,0,0" VerticalAlignment="Top" Background="Transparent" FontFamily="Garamond" Foreground="#FFF5E6D3" BorderBrush="Transparent" FontSize="16" Click="butOngletCommandes_Click"/>
@@ -20,5 +20,28 @@
         <Label x:Name="labNomUtilisateur" Content="Un nom" HorizontalAlignment="Left" Margin="740,56,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF5E6D3" FontFamily="Garamond"/>
         <Button x:Name="butSuivant" Content="Suivant" HorizontalAlignment="Left" Margin="538,202,0,0" VerticalAlignment="Top" Height="28" Width="110" Background="Black" BorderBrush="{x:Null}" Foreground="White" FontFamily="Garamond" FontSize="16" Click="butSuivant_Click"/>
 
+        <DataGrid x:Name="dgLignes"   IsReadOnly="True" ItemsSource="{Binding LesLignesCommande}"  Margin="50,256,50,0" Width="700" AutoGenerateColumns="False" BorderBrush="Black" Background="{x:Null}" Height="215" VerticalAlignment="Top"   >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nom" Binding="{Binding UnProduit.UneRecette.Recette_nom, ValidatesOnExceptions=true}" Width="*"/>
+                <DataGridTextColumn Header="Quantite" Binding="{Binding Quantite, ValidatesOnExceptions=true}" Width="*"/>
+                <DataGridTextColumn Header="Nb parts" Binding="{Binding UnProduit.Nb_parts, ValidatesOnExceptions=true}" Width="*"/>
+                <DataGridTextColumn Header="PrixUnitaire" Binding="{Binding UnProduit.Prix, ValidatesOnExceptions=true}" Width="*"/>
+
+
+            </DataGrid.Columns>
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="#FF1E1E1E"/>
+                    <Setter Property="Foreground" Value="#FFF5E6D3"/>
+                    <Setter Property="FontFamily" Value="Garamond"/>
+                    <Setter Property="FontSize" Value="20"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+
+
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+
+        </DataGrid>
+        
     </Grid>
 </UserControl>
