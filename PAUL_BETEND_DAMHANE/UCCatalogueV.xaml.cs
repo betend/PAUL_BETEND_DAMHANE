@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Collections.Specialized.BitVector32;
 
 namespace PAUL_BETEND_DAMHANE
 {
@@ -76,5 +77,51 @@ namespace PAUL_BETEND_DAMHANE
             }
 
         }
+
+        private void butAjouterAuPanier_Click(Object sender, RoutedEventArgs e)
+        {
+            Produit produitSelectionne = dgProduits.SelectedItem as Produit;
+
+            if (produitSelectionne == null)
+
+            {
+
+                MessageBox.Show("Veuillez sélectionner un produit.");
+
+                return;
+
+            }
+            var gestion = App.Current.MainWindow.DataContext as GestionPAUL;
+
+            LigneCommande ligneExistante = gestion.CommandeEnCours.LesLignesCommande.SingleOrDefault(l => l.UnProduit.Produit_id == produitSelectionne.Produit_id);
+
+            if (ligneExistante == null)
+
+            {
+
+                LigneCommande nouvelleLigne = new LigneCommande
+
+                {
+
+                    UnProduit = produitSelectionne,
+
+                    Quantite = 1
+
+                };
+
+                gestion.CommandeEnCours.LesLignesCommande.Add(nouvelleLigne);
+
+            }
+
+            else
+
+            {
+
+                ligneExistante.Quantite++;
+
+            }
+
+        }
     }
 }
+

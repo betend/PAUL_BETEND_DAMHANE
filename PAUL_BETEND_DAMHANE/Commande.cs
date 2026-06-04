@@ -29,8 +29,10 @@ namespace PAUL_DAMHANE_BETEND
         private ObservableCollection<Commande> lesCommandes;
         private ObservableCollection<LigneCommande> lesLignesCommande;
 
+
         public Commande()
         {
+            LesLignesCommande = new ObservableCollection<LigneCommande>();
         }
 
         public Commande(Int32 commande_id, DateOnly date_creation, DateOnly date_retrait, decimal accompte, Boolean est_prete, Boolean est_recuperee, Decimal total, DateOnly date_evenement, Int32 nb_personne)
@@ -45,13 +47,15 @@ namespace PAUL_DAMHANE_BETEND
             this.Total = total;
             this.Date_evenement = date_evenement;
             this.Nb_personne = nb_personne;
-            lesLignesCommande = new ObservableCollection<LigneCommande>();
+            LesLignesCommande = new ObservableCollection<LigneCommande>();
         }
 
         public Commande(Int32 commande_id, DateOnly date_creation, DateOnly date_retrait, Decimal accompte, Boolean est_prete, Boolean est_recuperee, Decimal total, DateOnly date_evenement, Int32 nb_personne, Int32 client_id, Int32 categorie_evenement_id) : this(commande_id, date_creation, date_retrait, accompte, est_prete, est_recuperee, total, date_evenement, nb_personne)
         {
             this.Client_id = client_id;
             this.Categorie_evenement_id = categorie_evenement_id;
+            LesLignesCommande = new ObservableCollection<LigneCommande>();
+
         }
 
         public int Commande_id
@@ -233,6 +237,19 @@ namespace PAUL_DAMHANE_BETEND
             set
             {
                 this.uneCategorie_evenement = value;
+            }
+        }
+
+        public ObservableCollection<LigneCommande> LesLignesCommande
+        {
+            get
+            {
+                return this.lesLignesCommande;
+            }
+
+            set
+            {
+                this.lesLignesCommande = value;
             }
         }
 
