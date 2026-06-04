@@ -54,7 +54,7 @@ namespace PAUL_BETEND_DAMHANE
             MessageBoxResult result = MessageBox.Show("Êtes-vous sûr de vouloir vous déconnecter ?", "Confirmation de déconnexion", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result == MessageBoxResult.Yes)
             {
-                _mainWindow.AfficheUCBienvenue();
+                _mainWindow.AfficheUCDeconnexion();
             }
 
         }

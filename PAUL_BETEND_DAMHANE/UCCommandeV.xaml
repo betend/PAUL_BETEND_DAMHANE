@@ -59,13 +59,6 @@
         <CheckBox x:Name="chkBuffetEntreprise" Content="Buffet entreprise" HorizontalAlignment="Left" Margin="720,240,0,0" VerticalAlignment="Top" FontFamily="Garamond" FontSize="14" Checked="CheckBox_Click" Unchecked="CheckBox_Click"/>
 
 
-        <TextBox x:Name="txtboxDateRecherche" HorizontalAlignment="Left" VerticalAlignment="Top" Width="91" Height="28" Margin="51,149,0,0" FontFamily="Garamond" FontSize="16" Foreground="black" TextChanged="txtboxDateRecherche_TextChanged"/>
-        <DatePicker x:Name="dpDateRecherche" 
-            HorizontalAlignment="Center" 
-            VerticalAlignment="Top" 
-            Width="200" Height="28" 
-            Margin="0,171,500,0" 
-            FontFamily="Garamond" FontSize="14"
-            SelectedDateChanged="dpDateRecherche_SelectedDateChanged"/>
+         <DatePicker x:Name="dpDateRecherche" HorizontalAlignment="Center" VerticalAlignment="Top" Width="200" Height="28" Margin="0,171,500,0" FontFamily="Garamond" FontSize="14" SelectedDateChanged="dpDateRecherche_SelectedDateChanged"/>
     </Grid>
 </UserControl>

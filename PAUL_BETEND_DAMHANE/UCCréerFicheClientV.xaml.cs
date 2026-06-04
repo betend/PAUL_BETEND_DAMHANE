@@ -20,9 +20,20 @@ namespace PAUL_BETEND_DAMHANE
     /// </summary>
     public partial class UCCréerFicheClientV : UserControl
     {
-        public UCCréerFicheClientV()
+        private MainWindow _mainWindow;
+        public UCCréerFicheClientV(MainWindow mainWindow)
         {
             InitializeComponent();
+            this._mainWindow = mainWindow;
+        }
+        private void butLogOut_Click(Object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Êtes-vous sûr de vouloir vous déconnecter ?", "Confirmation de déconnexion", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                _mainWindow.AfficheUCDeconnexion();
+            }
         }
     }
+
 }
