@@ -7,6 +7,27 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        
+        <DataGrid x:Name="dgCommandeCP"   IsReadOnly="True" ItemsSource="{Binding LesCommandes}"  Margin="100,261,100,0" AutoGenerateColumns="False" BorderBrush="Black" Background="{x:Null}" Height="215" Width ="600" VerticalAlignment="Top"    >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nom client" Binding="{Binding UnClient.Nom, ValidatesOnExceptions=true}" Width="*"/>
+                <DataGridTextColumn Header="Date_retrait" Binding="{Binding Date_retrait, ValidatesOnExceptions=true}" Width="*"/>
+                <DataGridTextColumn Header="Catégorie événement" Binding="{Binding UneCategorie_evenement.Categorie_evenement_nom, ValidatesOnExceptions=true}" Width="200"/>
+                <DataGridTextColumn Header="Statut" Binding="{Binding Est_prete, ValidatesOnExceptions=true}" Width="*"/>
+
+            </DataGrid.Columns>
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="#FF1E1E1E"/>
+                    <Setter Property="Foreground" Value="#FFF5E6D3"/>
+                    <Setter Property="FontFamily" Value="Garamond"/>
+                    <Setter Property="FontSize" Value="20"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+
+
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+
+        </DataGrid>
+
     </Grid>
 </UserControl>
