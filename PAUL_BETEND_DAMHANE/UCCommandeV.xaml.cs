@@ -141,45 +141,7 @@ namespace PAUL_BETEND_DAMHANE
             RafraichirVue();
         }
 
-        //private void txtboxDateRecherche_TextChanged(object sender, TextChangedEventArgs e)
-        //{
-        //    TextBox textBox = sender as TextBox;
-        //    if (textBox == null) return;
-
-        //    // On sauvegarde la position du curseur
-        //    int selectionStart = textBox.SelectionStart;
-
-        //    // On nettoie la chaîne pour ne garder que les chiffres
-        //    string chiffres = new string(textBox.Text.Where(char.IsDigit).ToArray());
-        //    string resultat = "";
-
-        //    // On reconstruit la chaîne avec les slashes automatiquement
-        //    if (chiffres.Length > 0)
-        //    {
-        //        resultat += chiffres.Substring(0, Math.Min(2, chiffres.Length));
-        //    }
-        //    if (chiffres.Length > 2)
-        //    {
-        //        resultat += "/" + chiffres.Substring(2, Math.Min(2, chiffres.Length - 2));
-        //    }
-        //    if (chiffres.Length > 4)
-        //    {
-        //        resultat += "/" + chiffres.Substring(4, Math.Min(4, chiffres.Length - 4));
-        //    }
-
-        //    // Pour éviter une boucle infinie de TextChanged, on ne met à jour que si c'est différent
-        //    if (textBox.Text != resultat)
-        //    {
-        //        textBox.Text = resultat;
-
-        //        // On replace le curseur intelligemment au bon endroit
-        //        textBox.SelectionStart = Math.Min(resultat.Length, selectionStart + (resultat.Length - textBox.Text.Length));
-        //    }
-
-        //    // On rafraîchit la DataGrid
-        //    RafraichirVue();
-        //}
-
+        
         // Centralisation du rafraîchissement automatique
         private void RafraichirVue()
         {

@@ -288,7 +288,21 @@ namespace PAUL_DAMHANE_BETEND
 
         public Int32 Update()
         {
-            throw new NotImplementedException();
+            // 1. On prépare la requête SQL
+            string req = "UPDATE commande SET est_recuperee = @est_recuperee WHERE commande_id = @id";
+
+            // 2. On instancie la commande Npgsql sans lui passer de connexion manuellement
+            NpgsqlCommand cmd = new NpgsqlCommand(req);
+
+            // 3. On ajoute les paramètres sécurisés
+            cmd.Parameters.AddWithValue("@est_recuperee", this.Est_recuperee);
+            cmd.Parameters.AddWithValue("@id", this.Commande_id);
+
+            // 4. On utilise ton DataAccess pour exécuter le tout proprement
+            // La méthode ExecuteSet va s'occuper d'ouvrir la connexion et d'exécuter la requête
+            Int32 nbLignesModifiees = DataAccess.ExecuteSet(cmd);
+
+            return nbLignesModifiees;
         }
     }
 }

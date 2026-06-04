@@ -45,19 +45,20 @@
                 <ImageBrush ImageSource="/se-deconnecter.png"/>
             </Button.Background>
         </Button>
-        <ComboBox x:Name="cboCategorie" HorizontalAlignment="Left" Margin="112,253,0,0" VerticalAlignment="Top" Width="120"  >
-            <ComboBoxItem Content="Pains"/>
-            <ComboBoxItem Content="Viennoiseries"/>
-            <ComboBoxItem Content="Gateaux"/>
-            <ComboBoxItem Content="Sales"/>
+        <ComboBox x:Name="cboCategorie" HorizontalAlignment="Left" Margin="112,253,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cboCategorie_SelectionChanged" >
+            <ComboBoxItem Content="Toutes"/>
+            <ComboBoxItem Content="Pain"/>
+            <ComboBoxItem Content="Viennoiserie"/>
+            <ComboBoxItem Content="Gateau"/>
+            <ComboBoxItem Content="Sale"/>
         </ComboBox>
-        <CheckBox x:Name="chkFruitsACoque" Content="Fruits à coque" HorizontalAlignment="Left" Margin="328,242,0,0" VerticalAlignment="Top" FontFamily="Garamond" FontSize="14"/>
-        <CheckBox x:Name="chkGluten" Content="Gluten" HorizontalAlignment="Left" Margin="328,264,0,0" VerticalAlignment="Top" FontFamily="Garamond" FontSize="14"/>
-        <CheckBox x:Name="chkLait" Content="Lait" HorizontalAlignment="Left" Margin="456,242,0,0" VerticalAlignment="Top" FontFamily="Garamond" FontSize="14"/>
-        <CheckBox x:Name="chkOeuf" Content="Oeuf" HorizontalAlignment="Left" Margin="456,264,0,0" VerticalAlignment="Top" FontFamily="Garamond" FontSize="14"/>
-        <CheckBox x:Name="chkSesame" Content="Sesame" HorizontalAlignment="Left" Margin="532,242,0,0" VerticalAlignment="Top" FontFamily="Garamond" FontSize="14"/>
-        <CheckBox x:Name="chkSoja" Content="Soja" HorizontalAlignment="Left" Margin="532,264,0,0" VerticalAlignment="Top" FontFamily="Garamond" FontSize="14"/>
-        <CheckBox x:Name="chkSulfites" Content="Sulfites" HorizontalAlignment="Left" Margin="620,242,0,0" VerticalAlignment="Top" FontFamily="Garamond" FontSize="14"/>
+        <CheckBox x:Name="chkFruitsACoque" Content="Fruits à coque" HorizontalAlignment="Left" Margin="328,242,0,0" VerticalAlignment="Top" FontFamily="Garamond" FontSize="14" Click="Allergene_Click"/>
+        <CheckBox x:Name="chkGluten" Content="Gluten" HorizontalAlignment="Left" Margin="328,264,0,0" VerticalAlignment="Top" FontFamily="Garamond" FontSize="14" Click="Allergene_Click"/>
+        <CheckBox x:Name="chkLait" Content="Lait" HorizontalAlignment="Left" Margin="456,242,0,0" VerticalAlignment="Top" FontFamily="Garamond" FontSize="14" Click="Allergene_Click"/>
+        <CheckBox x:Name="chkOeuf" Content="Oeuf" HorizontalAlignment="Left" Margin="456,264,0,0" VerticalAlignment="Top" FontFamily="Garamond" FontSize="14" Click="Allergene_Click"/>
+        <CheckBox x:Name="chkSesame" Content="Sesame" HorizontalAlignment="Left" Margin="532,242,0,0" VerticalAlignment="Top" FontFamily="Garamond" FontSize="14" Click="Allergene_Click"/>
+        <CheckBox x:Name="chkSoja" Content="Soja" HorizontalAlignment="Left" Margin="532,264,0,0" VerticalAlignment="Top" FontFamily="Garamond" FontSize="14" Click="Allergene_Click"/>
+        <CheckBox x:Name="chkSulfites" Content="Sulfites" HorizontalAlignment="Left" Margin="620,242,0,0" VerticalAlignment="Top" FontFamily="Garamond" FontSize="14" Click="Allergene_Click"/>
         <Label Content="Catégorie" HorizontalAlignment="Left" Margin="53,252,0,0" VerticalAlignment="Top" FontFamily="Garamond"/>
         <Label Content="Allergènes" HorizontalAlignment="Left" Margin="254,237,0,0" VerticalAlignment="Top" FontFamily="Garamond"/>
 

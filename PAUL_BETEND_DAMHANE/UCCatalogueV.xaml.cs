@@ -7,13 +7,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using static System.Collections.Specialized.BitVector32;
 
 namespace PAUL_BETEND_DAMHANE
 {
@@ -22,106 +15,192 @@ namespace PAUL_BETEND_DAMHANE
     /// </summary>
     public partial class UCCatalogueV : UserControl
     {
-
         public GestionPAUL laGestionPaul { get; set; }
-
         private MainWindow _mainWindow;
+
         public UCCatalogueV(MainWindow mainWindow)
         {
-
             InitializeComponent();
             _mainWindow = mainWindow;
-            dgProduits.Items.Filter = RechercheMotClefProduit;
-
+            // On enlève la ligne du filtre d'ici pour éviter le plantage au démarrage !
         }
 
-        private bool RechercheMotClefProduit(object obj)
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            if (String.IsNullOrEmpty(txtboxRecherche.Text))
-                return true;
-            Produit unProduit = obj as Produit;
-            return (unProduit.UneRecette.Recette_nom.StartsWith(txtboxRecherche.Text, StringComparison.OrdinalIgnoreCase));
+            var gestion = App.Current.MainWindow.DataContext as GestionPAUL;
+            if (gestion != null)
+            {
+                // 1. On donne d'abord les données au DataGrid
+                dgProduits.ItemsSource = gestion.LesProduits;
+
+                // 2. On applique le filtre unique ICI, une fois que les données sont bien chargées
+                if (dgProduits.Items != null)
+                {
+                    dgProduits.Items.Filter = RechercheFiltreProduit;
+                }
+            }
         }
+
+        // ==========================================
+        // LE FILTRE GLOBAL UNIQUE
+        // ==========================================
+        private bool RechercheFiltreProduit(object obj)
+        {
+            Produit unProduit = obj as Produit;
+            if (unProduit == null) return false;
+
+            // ------------------------------------------
+            // 1. FILTRE TEXTBOX
+            // ------------------------------------------
+            bool correspondTexte = true;
+            if (!string.IsNullOrEmpty(txtboxRecherche.Text))
+            {
+                string nomRecette = unProduit.UneRecette?.Recette_nom;
+                if (nomRecette != null)
+                {
+                    correspondTexte = nomRecette.StartsWith(txtboxRecherche.Text, StringComparison.OrdinalIgnoreCase);
+                }
+                else
+                {
+                    correspondTexte = false;
+                }
+            }
+
+            // ------------------------------------------
+            // 2. FILTRE COMBOBOX (Catégorie)
+            // ------------------------------------------
+            bool correspondCategorie = true;
+
+            if (cboCategorie != null && cboCategorie.SelectedItem != null)
+            {
+                ComboBoxItem itemSelectionne = cboCategorie.SelectedItem as ComboBoxItem;
+                string categorieFiltre = itemSelectionne.Content?.ToString();
+                string categorieProduit = unProduit.UneRecette?.UneCategorie?.Categorie_nom;
+
+                if (!string.IsNullOrEmpty(categorieFiltre))
+                {
+                    // Si l'utilisateur choisit "Toutes", on laisse correspondCategorie à true (on affiche tout)
+                    // Sinon, on applique le filtre normalement
+                    if (!string.Equals(categorieFiltre, "Toutes", StringComparison.OrdinalIgnoreCase))
+                    {
+                        correspondCategorie = string.Equals(categorieProduit, categorieFiltre, StringComparison.OrdinalIgnoreCase);
+                    }
+                }
+            }
+
+            // ------------------------------------------
+            // 3. FILTRE CHECKBOXES (Allergènes)
+            // ------------------------------------------
+            bool correspondAllergenes = true;
+            string listeAllergenesProduit = unProduit.AllergeneTexte ?? "";
+
+            if (chkFruitsACoque?.IsChecked == true && listeAllergenesProduit.Contains("Fruits à coque", StringComparison.OrdinalIgnoreCase))
+                correspondAllergenes = false;
+
+            if (chkGluten?.IsChecked == true && listeAllergenesProduit.Contains("Gluten", StringComparison.OrdinalIgnoreCase))
+                correspondAllergenes = false;
+
+            if (chkLait?.IsChecked == true && listeAllergenesProduit.Contains("Lait", StringComparison.OrdinalIgnoreCase))
+                correspondAllergenes = false;
+
+            if (chkOeuf?.IsChecked == true && listeAllergenesProduit.Contains("Oeuf", StringComparison.OrdinalIgnoreCase))
+                correspondAllergenes = false;
+
+            if (chkSesame?.IsChecked == true && listeAllergenesProduit.Contains("Sesame", StringComparison.OrdinalIgnoreCase))
+                correspondAllergenes = false;
+
+            if (chkSoja?.IsChecked == true && listeAllergenesProduit.Contains("Soja", StringComparison.OrdinalIgnoreCase))
+                correspondAllergenes = false;
+
+            if (chkSulfites?.IsChecked == true && listeAllergenesProduit.Contains("Sulfites", StringComparison.OrdinalIgnoreCase))
+                correspondAllergenes = false;
+
+            return correspondTexte && correspondCategorie && correspondAllergenes;
+        }
+
+        // ==========================================
+        // DÉCLENCHEURS DES FILTRES
+        // ==========================================
 
         private void textMotClefProduit_TextChanged(object sender, TextChangedEventArgs e)
         {
-            CollectionViewSource.GetDefaultView(dgProduits.ItemsSource).Refresh();
+            RafraichirVue();
         }
 
-        private void butOngletCommandes_Click(Object sender, RoutedEventArgs e)
+        private void cboCategorie_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            _mainWindow.AfficheUCCommandeV();
+            RafraichirVue();
         }
 
-        private void butOngletPanier_Click(Object sender, RoutedEventArgs e)
+        private void Allergene_Click(object sender, RoutedEventArgs e)
         {
-            _mainWindow.AfficheUCPanier();
+            RafraichirVue();
         }
 
-        private void butOngletCatalogue_Click(Object sender, RoutedEventArgs e)
+        private void RafraichirVue()
         {
-            _mainWindow.AfficheUCCatalogueV();
-        }
-
-        private void UserControl_Loaded(Object sender, RoutedEventArgs e)
-        {
-            var gestion = App.Current.MainWindow.DataContext as GestionPAUL;
-            dgProduits.ItemsSource = gestion.LesProduits;
-        }
-
-        private void butLogOut_Click(Object sender, RoutedEventArgs e)
-        {
-            MessageBoxResult result = MessageBox.Show("Êtes-vous sûr de vouloir vous déconnecter ?", "Confirmation de déconnexion", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (result == MessageBoxResult.Yes) {
-                _mainWindow.AfficheUCDeconnexion();
+            // Sécurité : on ne rafraîchit que si le DataGrid a des éléments
+            if (dgProduits?.ItemsSource != null && dgProduits.Items != null)
+            {
+                CollectionViewSource.GetDefaultView(dgProduits.ItemsSource).Refresh();
             }
-
         }
 
-        private void butAjouterAuPanier_Click(Object sender, RoutedEventArgs e)
+        // ==========================================
+        // ACTIONS ET NAVIGATIONS
+        // ==========================================
+
+        private void butAjouterAuPanier_Click(object sender, RoutedEventArgs e)
         {
             Produit produitSelectionne = dgProduits.SelectedItem as Produit;
 
             if (produitSelectionne == null)
-
             {
-
                 MessageBox.Show("Veuillez sélectionner un produit.");
-
                 return;
-
             }
-            var gestion = App.Current.MainWindow.DataContext as GestionPAUL;
 
+            var gestion = App.Current.MainWindow.DataContext as GestionPAUL;
             LigneCommande ligneExistante = gestion.CommandeEnCours.LesLignesCommande.SingleOrDefault(l => l.UnProduit.Produit_id == produitSelectionne.Produit_id);
 
             if (ligneExistante == null)
-
             {
-
                 LigneCommande nouvelleLigne = new LigneCommande
-
                 {
-
                     UnProduit = produitSelectionne,
-
                     Quantite = 1
-
                 };
-
                 gestion.CommandeEnCours.LesLignesCommande.Add(nouvelleLigne);
-
             }
-
             else
-
             {
-
                 ligneExistante.Quantite++;
-
             }
+            MessageBox.Show("Produit ajouté !");
+        }
 
+        private void butOngletCommandes_Click(object sender, RoutedEventArgs e)
+        {
+            _mainWindow.AfficheUCCommandeV();
+        }
+
+        private void butOngletPanier_Click(object sender, RoutedEventArgs e)
+        {
+            _mainWindow.AfficheUCPanier();
+        }
+
+        private void butOngletCatalogue_Click(object sender, RoutedEventArgs e)
+        {
+            _mainWindow.AfficheUCCatalogueV();
+        }
+
+        private void butLogOut_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Êtes-vous sûr de vouloir vous déconnecter ?", "Confirmation de déconnexion", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                _mainWindow.AfficheUCDeconnexion();
+            }
         }
     }
 }
-

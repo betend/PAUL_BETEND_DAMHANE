@@ -14,16 +14,26 @@ namespace PAUL_BETEND_DAMHANE.Model
         private static readonly string connectionString;
         private static NpgsqlConnection connection;
 
-       
+        public static NpgsqlConnection Connection
+        {
+            get
+            {
+                return connection;
+            }
 
-        
+            set
+            {
+                connection = value;
+            }
+        }
+
         static DataAccess()
         {
             connectionString = "Host=srv-peda-new;Port=5433;Username=damhanes;Password=E57vrN;Database=damhanes_sae201;Options='-c search_path=damhanes'";
         
             try
             {
-                connection = new NpgsqlConnection(connectionString);
+                Connection = new NpgsqlConnection(connectionString);
             }
             catch (Exception ex)
             {
@@ -37,11 +47,11 @@ namespace PAUL_BETEND_DAMHANE.Model
         public static NpgsqlConnection GetConnection()
         {
 
-            if (connection.State == ConnectionState.Closed || connection.State == ConnectionState.Broken)
+            if (Connection.State == ConnectionState.Closed || Connection.State == ConnectionState.Broken)
 
                 try
                 {
-                    connection.Open(); 
+                    Connection.Open(); 
                 }
                 catch (Exception ex)
                 {
@@ -49,7 +59,7 @@ namespace PAUL_BETEND_DAMHANE.Model
                     throw;
                 }
         
-            return connection;
+            return Connection;
         }
 
       
@@ -134,9 +144,9 @@ namespace PAUL_BETEND_DAMHANE.Model
         //  Fermer la connexion 
         public static void CloseConnection()
         {
-            if (connection.State == ConnectionState.Open)
+            if (Connection.State == ConnectionState.Open)
             {
-                connection.Close();
+                Connection.Close();
             }
         }
     }
