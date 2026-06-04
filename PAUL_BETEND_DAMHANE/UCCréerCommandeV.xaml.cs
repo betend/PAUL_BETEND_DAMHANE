@@ -20,9 +20,12 @@ namespace PAUL_BETEND_DAMHANE
     /// </summary>
     public partial class UCCréerCommandeV : UserControl
     {
-        public UCCréerCommandeV()
+        private MainWindow _mainWindow;
+
+        public UCCréerCommandeV(MainWindow mainWindow)
         {
             InitializeComponent();
+            this._mainWindow = mainWindow;
         }
     }
 }

@@ -43,7 +43,7 @@ namespace PAUL_BETEND_DAMHANE
 
         private void butSuivant_Click(Object sender, RoutedEventArgs e)
         {
-            _mainWindow.AfficheUCRechercherClientV();
+            _mainWindow.AfficheUCCréerCommandeV();   
         }
 
 

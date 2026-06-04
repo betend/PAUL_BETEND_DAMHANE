@@ -76,5 +76,11 @@ namespace PAUL_BETEND_DAMHANE
             FondEcran.Content = uc;
         }
 
+        public void AfficheUCCréerCommandeV()
+        {
+            UCCréerCommandeV uc = new UCCréerCommandeV(this);
+            FondEcran.Content = uc;
+        }
+
     }
 }
