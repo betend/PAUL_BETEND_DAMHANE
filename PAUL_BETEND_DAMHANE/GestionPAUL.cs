@@ -17,6 +17,7 @@ namespace PAUL_BETEND_DAMHANE
         private ObservableCollection<Allergenes> lesAllergenes;
         private ObservableCollection<CategorieEvenement> lesCategorieEvenement;
         private ObservableCollection<LigneCommande> lesLignesCommande;
+        private ObservableCollection<Categorie> lesCategorie;
         private Commande commandeEnCours;
 
         private string nom;
@@ -49,11 +50,14 @@ namespace PAUL_BETEND_DAMHANE
             LesAllergenes = new ObservableCollection<Allergenes>(new Allergenes().FindAll());
             LesCategorieEvenement = new ObservableCollection<CategorieEvenement>(new CategorieEvenement().FindAll());
             LesLignesCommande = new ObservableCollection<LigneCommande>(new LigneCommande().FindAll());
+            LesCategorie = new ObservableCollection<Categorie>(new Categorie().FindAll());
             CommandeEnCours = new Commande();
 
             foreach (Produit p in LesProduits)
             {
                 p.UneRecette = LesRecettes.SingleOrDefault(r => r.Recette_id == p.Recette_id);
+              
+
 
             }
 
@@ -66,6 +70,12 @@ namespace PAUL_BETEND_DAMHANE
             foreach (LigneCommande li in LesLignesCommande)
             {
                 li.UnProduit = LesProduits.SingleOrDefault(produit => produit.Produit_id == li.Produit_id);
+            }
+
+            foreach (Recette r in LesRecettes)
+            {
+                r.UneCategorie = LesCategorie.SingleOrDefault(cat => cat.Categorie_id == r.Categorie_id);
+
             }
 
 
@@ -186,6 +196,19 @@ namespace PAUL_BETEND_DAMHANE
             set
             {
                 this.lesAllergenes = value;
+            }
+        }
+
+        public ObservableCollection<Categorie> LesCategorie
+        {
+            get
+            {
+                return this.lesCategorie;
+            }
+
+            set
+            {
+                this.lesCategorie = value;
             }
         }
     }

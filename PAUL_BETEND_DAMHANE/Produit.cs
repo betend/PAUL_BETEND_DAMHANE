@@ -18,7 +18,10 @@ namespace PAUL_DAMHANE_BETEND
     {
         private int produit_id;
         private int recette_id;
+
         private Recette uneRecette;
+
+
         private bool est_indisponible;
         private int nb_parts;
         private decimal prix;
@@ -157,45 +160,6 @@ namespace PAUL_DAMHANE_BETEND
                 return string.Join(", ", UneRecette.LesAllergenes.Select(a => a.Allergene_nom));
 
             }
-
-        }
-
-
-
-
-        public List<Allergenes> FindAllergenes()
-
-        {
-
-            List<Allergenes> lesAllergenes = new List<Allergenes>();
-
-            using (NpgsqlCommand cmdSelect = new NpgsqlCommand(
-
-                @"select a.allergene_id, a.allergene_nom
-
-                from allergene a
-
-                 join produit_allergene pa on pa.allergene_id = a.id_allergene
-
-                 where pa.produit_id = @id"))
-
-            {
-
-                cmdSelect.Parameters.AddWithValue("@id", this.Produit_id);
-
-                DataTable dt = DataAccess.ExecuteSelect(cmdSelect);
-
-                foreach (DataRow dr in dt.Rows)
-
-                {
-
-                    lesAllergenes.Add(new Allergenes((int)dr["allergene_id"], (string)dr["allergene_nom"].ToString()));
-
-                }
-
-            }
-
-            return lesAllergenes;
 
         }
 

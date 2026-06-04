@@ -22,6 +22,7 @@
                 <DataGridTextColumn Header="Prix" Binding="{Binding Prix, ValidatesOnExceptions=true}" Width="*"/>
                 <DataGridTextColumn Header="Nb Parts" Binding="{Binding Nb_parts, ValidatesOnExceptions=true}" Width="*"/>
                 <DataGridTextColumn Header="Allergenes" Binding="{Binding AllergeneTexte, ValidatesOnExceptions=true}" Width="*"/>
+                <DataGridTextColumn Header="Categorie" Binding="{Binding UneRecette.UneCategorie.Categorie_nom, ValidatesOnExceptions=true}" Width="*"/>
 
             </DataGrid.Columns>
             <DataGrid.ColumnHeaderStyle>

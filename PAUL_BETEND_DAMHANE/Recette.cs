@@ -13,8 +13,11 @@ namespace PAUL_DAMHANE_BETEND
     public class Recette : ICrud<Recette>
     {
         private int recette_id;
+        private int categorie_id;
         private string recette_nom;
         private string recette_description;
+        private Categorie uneCategorie;
+
         private ObservableCollection<Recette> lesRecettes;
         private ObservableCollection<Allergenes> lesAllergenes;
 
@@ -29,6 +32,11 @@ namespace PAUL_DAMHANE_BETEND
             this.Recette_nom = recette_nom;
             this.Recette_description = recette_description;
             LesAllergenes = new ObservableCollection<Allergenes>(FindAllergenes());
+        }
+
+        public Recette(Int32 recette_id, Int32 categorie_id, String recette_nom, String recette_description) : this(recette_id, recette_nom, recette_description)
+        {
+            this.Categorie_id = categorie_id;
         }
 
         public int Recette_id
@@ -96,6 +104,31 @@ namespace PAUL_DAMHANE_BETEND
             }
         }
 
+        public Categorie UneCategorie
+        {
+            get
+            {
+                return this.uneCategorie;
+            }
+
+            set
+            {
+                this.uneCategorie = value;
+            }
+        }
+
+        public Int32 Categorie_id
+        {
+            get
+            {
+                return this.categorie_id;
+            }
+
+            set
+            {
+                this.categorie_id = value;
+            }
+        }
 
         public List<Allergenes> FindAllergenes()
 
@@ -151,7 +184,7 @@ namespace PAUL_DAMHANE_BETEND
             {
                 DataTable dt = DataAccess.ExecuteSelect(cmdSelect);
                 foreach (DataRow dr in dt.Rows)
-                    lesRecettes.Add(new Recette((int)dr["recette_id"],
+                    lesRecettes.Add(new Recette((int)dr["recette_id"], (int)dr["categorie_id"],
                    (string)dr["recette_nom"], (string)dr["recette_description"]));
             }
             return lesRecettes;
