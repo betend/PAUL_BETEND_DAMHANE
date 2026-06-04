@@ -1,6 +1,7 @@
 ﻿using PAUL_DAMHANE_BETEND;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,7 +42,8 @@ namespace PAUL_BETEND_DAMHANE
         private void textMotClefClient_TextChanged(object sender, TextChangedEventArgs e)
         {
             CollectionViewSource.GetDefaultView(dgRechercheClient.ItemsSource).Refresh();
-        
+            VerifierSiAucunClientTrouve();
+
         }
 
         private void UserControl_Loaded(Object sender, RoutedEventArgs e)
@@ -58,6 +60,42 @@ namespace PAUL_BETEND_DAMHANE
             {
                 _mainWindow.AfficheUCDeconnexion();
             }
+
+        }
+
+
+        private void VerifierSiAucunClientTrouve()
+        {
+            ICollectionView vue = CollectionViewSource.GetDefaultView(dgRechercheClient.ItemsSource);
+            if (vue == null)
+            {
+                btnCreerClient.Visibility = Visibility.Visible;
+                return;
+            }
+            int nbResultats = vue.Cast<object>().Count();
+            if (nbResultats == 0)
+                btnCreerClient.Visibility = Visibility.Visible;
+            else
+                btnCreerClient.Visibility = Visibility.Collapsed;
+        }
+
+        private void btnCreerClient_Click(Object sender, RoutedEventArgs e)
+        {
+            _mainWindow.AfficheUCCréerFicheClientV();
+        }
+
+        private void BbutSelectionner_Click(Object sender, RoutedEventArgs e)
+        {
+            Client clientSelectionne = dgRechercheClient.SelectedItem as Client;
+            if (clientSelectionne == null)
+            {
+                MessageBox.Show("Veuillez sélectionner un client.","Attention",MessageBoxButton.OK,MessageBoxImage.Information);
+                return;
+            }
+            var gestion = App.Current.MainWindow.DataContext as GestionPAUL;
+            gestion.CommandeEnCours.UnClient = clientSelectionne;
+
+            _mainWindow.AfficheUCRecapitulatif();
 
         }
     }

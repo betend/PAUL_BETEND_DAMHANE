@@ -35,5 +35,11 @@ namespace PAUL_BETEND_DAMHANE
                 _mainWindow.AfficheUCDeconnexion();
             }
         }
+
+        private void butCreerCommande_Click(Object sender, RoutedEventArgs e)
+        {
+            _mainWindow.AfficheUCRechercherClientV();
+        }
+
     }
 }

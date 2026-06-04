@@ -123,6 +123,18 @@ namespace PAUL_BETEND_DAMHANE
             UCCréerCommandeV uc = new UCCréerCommandeV(this);
             FondEcran.Content = uc;
         }
+
+
+        public void AfficheUCCréerFicheClientV()
+        {
+            UCCréerFicheClientV uc = new UCCréerFicheClientV(this);
+            FondEcran.Content = uc;
+        }
+        public void AfficheUCRecapitulatif()
+        {
+            UCRecapitulatif uc = new UCRecapitulatif(this);
+            FondEcran.Content = uc;
+        }
         public void AfficheUCDeconnexion()
         {
             UCDeconnexion uc = new UCDeconnexion(this);

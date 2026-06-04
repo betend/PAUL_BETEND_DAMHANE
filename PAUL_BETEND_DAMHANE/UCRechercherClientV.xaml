@@ -43,6 +43,18 @@
         </DataGrid>
         <Image x:Name="iconLoupe" Margin="0,207,310,0" Source="/Icon/loupe.png" Stretch="Fill" HorizontalAlignment="Right" Width="17" Height="18" VerticalAlignment="Top"/>
         <Label x:Name="labTitreCatalogue" Content="Rattacher un client à une commande" HorizontalAlignment="Center" Margin="0,139,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="Black" FontFamily="Georgia" FontSize="30"/>
-        <Button Content="Selectionner" HorizontalAlignment="Left" Margin="538,202,0,0" VerticalAlignment="Top" Height="28" Width="110" Background="Black" BorderBrush="{x:Null}" Foreground="White" FontFamily="Garamond" FontSize="16"/>
+        <Button Content="Selectionner" HorizontalAlignment="Left" Margin="538,202,0,0" VerticalAlignment="Top" Height="28" Width="110" Background="Black" BorderBrush="{x:Null}" Foreground="White" FontFamily="Garamond" FontSize="16" Click="BbutSelectionner_Click"/>
+        <Button x:Name="btnCreerClient" Width="110" Background="Black" BorderBrush="{x:Null}" Foreground="White"   Height="28" FontFamily="Garamond" FontSize="16" Content="Créer un client" Click="btnCreerClient_Click" Margin="345,336,345,86" >
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=dgClients, Path=Items.IsEmpty}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
     </Grid>
 </UserControl>
