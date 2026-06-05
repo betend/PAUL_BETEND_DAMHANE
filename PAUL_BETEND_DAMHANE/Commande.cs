@@ -298,13 +298,14 @@ namespace PAUL_DAMHANE_BETEND
 
         public Int32 Update()
         {
-            // 1. On prépare la requête SQL
-            string req = "UPDATE commande SET est_recuperee = @est_recuperee WHERE commande_id = @id;";
+            // 1. On prépare la requête SQL pour mettre à jour les DEUX booléens
+            string req = "UPDATE commande SET est_prete = @est_prete, est_recuperee = @est_recuperee WHERE commande_id = @id;";
 
             // 2. On instancie la commande Npgsql
             NpgsqlCommand cmd = new NpgsqlCommand(req);
 
-            // 3. CORRECTION : On force le type de données PostgreSQL de manière stricte
+            // 3. On ajoute TOUS les paramètres nécessaires de manière stricte
+            cmd.Parameters.Add("@est_prete", NpgsqlTypes.NpgsqlDbType.Boolean).Value = this.Est_prete;
             cmd.Parameters.Add("@est_recuperee", NpgsqlTypes.NpgsqlDbType.Boolean).Value = this.Est_recuperee;
             cmd.Parameters.Add("@id", NpgsqlTypes.NpgsqlDbType.Integer).Value = this.Commande_id;
 

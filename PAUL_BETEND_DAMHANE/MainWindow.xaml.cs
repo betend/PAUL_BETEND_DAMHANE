@@ -140,6 +140,10 @@ namespace PAUL_BETEND_DAMHANE
             UCDeconnexion uc = new UCDeconnexion(this);
             FondEcran.Content = uc;
         }
-
+        public void AfficheUCCatalogueCP()
+        {
+            UCCatalogueCP uc = new UCCatalogueCP(this);
+            FondEcran.Content = uc;
+        }
     }
 }

@@ -160,7 +160,7 @@ namespace PAUL_BETEND_DAMHANE
             }
             else
             {
-                commandeSelectionnee.Est_recuperee = false;
+                commandeSelectionnee.Est_prete = false;
                 commandeSelectionnee.Update();
             }
         }
@@ -177,43 +177,48 @@ namespace PAUL_BETEND_DAMHANE
             _mainWindow.AfficheUCCommandeCP();
         }
 
+        private void butOngletCatalogue_Click(object sender, RoutedEventArgs e)
+        {
+            _mainWindow.AfficheUCCatalogueCP();
+        }
+
+
         private void checkValiderCommande_Click(object sender, RoutedEventArgs e)
         {
+
             CheckBox cb = sender as CheckBox;
             if (cb == null) return;
 
             Commande commandeSelectionnee = cb.DataContext as Commande;
             if (commandeSelectionnee == null) return;
 
-            // On met à jour l'état de l'objet
-            commandeSelectionnee.Est_recuperee = (cb.IsChecked == true);
+            // ====================================================================
+            // FIX 1 : On change la propriété 'Est_prete' de l'objet AVANT le Update
+            // ====================================================================
+            commandeSelectionnee.Est_prete = (cb.IsChecked == true);
 
-            // ========================================================
-            // VÉRIFICATION DU RETOUR DE LA BASE DE DONNÉES
-            // ========================================================
+            // Envoi à la base de données
             int resultat = commandeSelectionnee.Update();
 
-            if (resultat > 0)
+            // Vérification du retour de PostgreSQL
+            if (resultat <= 0)
             {
-                // Optionnel : un petit message de confirmation
-            }
-            else
-            {
-                // ALERTE : La base de données n'a pas pris en compte la modification
                 MessageBox.Show(
-                    "Erreur : La mise à jour en base de données a échoué. Veuillez réessayer.",
+                    "Erreur : La mise à jour du statut 'Prête' en base de données a échoué. Veuillez réessayer.",
                     "Erreur de sauvegarde",
                     MessageBoxButton.OK,
                     MessageBoxImage.Error
                 );
 
-                // Annuler visuellement le cochage/décochage puisque la BDD a échoué
+                // Annuler visuellement le cochage si la BDD a planté
                 cb.IsChecked = !cb.IsChecked;
-                commandeSelectionnee.Est_recuperee = (cb.IsChecked == true);
+                commandeSelectionnee.Est_prete = (cb.IsChecked == true);
             }
 
+            // Applique le rafraîchissement (si le pâtissier filtre par "Pas prêtes", le gâteau va disparaître de la liste, c'est logique)
             RafraichirVue();
         }
+        
 
         private void CheckBox_Click(object sender, RoutedEventArgs e)
         {

@@ -227,5 +227,16 @@ namespace PAUL_BETEND_DAMHANE
                 this.lesEmployes = value;
             }
         }
+
+        private Employe employeConnecte;
+
+        public Employe EmployeConnecte
+        {
+            get { return employeConnecte; }
+            set
+            {
+                employeConnecte = value;
+            }
+        }
     }
 }
