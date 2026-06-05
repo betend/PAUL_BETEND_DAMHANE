@@ -265,8 +265,43 @@ namespace PAUL_DAMHANE_BETEND
 
         public Int32 Create()
         {
-            throw new NotImplementedException();
+            int idGenere;
+            using (NpgsqlCommand cmdInsert = new NpgsqlCommand(
+                @"insert into commande
+       (client_id, categorie_evenement_id, date_creation, date_retrait, acompte,
+        est_prete, est_recuperee, total, date_evenement, nb_personne)
+       values
+       (@client_id, @categorie_evenement_id, @date_creation, @date_retrait, @acompte,
+        @est_prete, @est_recuperee, @total, @date_evenement, @nb_personne)
+       returning commande_id;"))
+            {
+                cmdInsert.Parameters.AddWithValue("@client_id", this.UnClient.Client_id);
+                cmdInsert.Parameters.AddWithValue("@categorie_evenement_id", this.UneCategorie_evenement.Categorie_evenement_id);
+                cmdInsert.Parameters.AddWithValue("@date_creation", this.date_creation);
+                cmdInsert.Parameters.AddWithValue("@date_retrait", DateOnly.FromDateTime(DateTime.Now));
+                cmdInsert.Parameters.AddWithValue("@acompte", this.calculerAcompte());
+                cmdInsert.Parameters.AddWithValue("@est_prete", this.est_prete);
+                cmdInsert.Parameters.AddWithValue("@est_recuperee", this.est_recuperee);
+                cmdInsert.Parameters.AddWithValue("@total", this.total);
+                cmdInsert.Parameters.AddWithValue("@date_evenement", this.date_evenement);
+                cmdInsert.Parameters.AddWithValue("@nb_personne", this.nb_personne);
+                idGenere = (int)DataAccess.ExecuteInsert(cmdInsert);
+            }
+            this.commande_id = idGenere;
+            return idGenere;
         }
+
+
+        private decimal calculerAcompte()
+        {
+            decimal acompte = 0;
+
+            acompte = total / 4;
+
+            return acompte;
+        }
+
+
 
         public Int32 Delete()
         {
