@@ -120,6 +120,42 @@ namespace PAUL_BETEND_DAMHANE
 
             return correspondTexte && correspondCategorie && correspondAllergenes;
         }
+        private void btnAjouterProduit_Click(object sender, RoutedEventArgs e)
+        {
+            // Ouvrir la fenêtre d'ajout
+            FormAjoutProduitCP fenetreAjout = new FormAjoutProduitCP();
+
+            // Si l'utilisateur valide l'ajout, on rafraîchit la DataGrid pour voir le nouveau gâteau
+            if (fenetreAjout.ShowDialog() == true)
+            {
+                // On recharge la liste des produits depuis GestionPAUL pour inclure le nouveau
+                var gestion = App.Current.MainWindow.DataContext as GestionPAUL;
+                if (gestion != null)
+                {
+                    // Exemple : si vous avez une méthode pour recharger depuis la BDD :
+                    // gestion.LesProduits = new ObservableCollection<Produit>(new Produit().FindAll());
+                }
+                RafraichirVue();
+            }
+        }
+        private void dgProduits_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            // 1. On récupère le produit sélectionné dans la DataGrid
+            Produit produitSelectionne = dgProduits.SelectedItem as Produit;
+
+            // Sécurité : on vérifie qu'un produit a bien été cliqué
+            if (produitSelectionne == null) return;
+
+            // 2. On instancie la fenêtre de détails en lui passant l'objet produit
+            FormDetailProduitCP fenetreDetail = new FormDetailProduitCP(produitSelectionne);
+
+            // 3. On l'affiche en mode Modal (bloquant)
+            fenetreDetail.ShowDialog();
+
+            // Facultatif : si le pâtissier a pu modifier l'indisponibilité dans la fiche, 
+            // on rafraîchit le catalogue à la fermeture
+            RafraichirVue();
+        }
 
         // ==========================================
         // DÉCLENCHEURS DES FILTRES

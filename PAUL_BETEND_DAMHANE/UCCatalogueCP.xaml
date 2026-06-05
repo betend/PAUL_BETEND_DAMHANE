@@ -8,7 +8,7 @@
              d:DesignHeight="450" d:DesignWidth="800"
              Loaded="UserControl_Loaded">
     <Grid>
-        <DataGrid x:Name="dgProduits"   IsReadOnly="True" ItemsSource="{Binding LesProduits}"  Margin="53,300,44,0" Width="700" AutoGenerateColumns="False" BorderBrush="Black" Background="{x:Null}" Height="215" VerticalAlignment="Top"   >
+        <DataGrid x:Name="dgProduits"   IsReadOnly="True" ItemsSource="{Binding LesProduits}"  Margin="53,300,44,0" Width="700" AutoGenerateColumns="False" BorderBrush="Black" Background="{x:Null}" Height="215" VerticalAlignment="Top"  MouseDoubleClick="dgProduits_MouseDoubleClick" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nom" Binding="{Binding UneRecette.Recette_nom, ValidatesOnExceptions=true}" Width="*"/>
                 <DataGridTextColumn Header="Prix" Binding="{Binding Prix, ValidatesOnExceptions=true}" Width="*"/>
@@ -60,7 +60,16 @@
             </Button.Background>
         </Button>
         <Image x:Name="iconUtilisateur" Margin="0,10,10,0" Source="/Icon/utilisateur.png" HorizontalAlignment="Right" Width="50" Height="50" VerticalAlignment="Top"/>
-        <Label x:Name="labNomUtilisateur" Content="Un nom" HorizontalAlignment="Left" Margin="740,56,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF5E6D3" FontFamily="Garamond"/>
-
+        <Button x:Name="btnAjouterProduit" 
+        Content="Ajouter un nouveau produit" 
+        HorizontalAlignment="Left" 
+        Margin="597,195,0,0" 
+        VerticalAlignment="Top" 
+        Width="180" 
+        Height="30" 
+        Background="black" 
+        Foreground="White" 
+        FontWeight="Bold" 
+        Click="btnAjouterProduit_Click"/>
     </Grid>
 </UserControl>

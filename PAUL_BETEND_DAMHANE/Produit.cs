@@ -164,9 +164,26 @@ namespace PAUL_DAMHANE_BETEND
         }
 
 
-        public int Create()
+        public Int32 Create()
         {
-            throw new NotImplementedException();
+            // Requête SQL d'insertion qui retourne l'ID généré par la séquence serial
+            string req = "INSERT INTO produit (prix, nb_parts, est_indisponible, recette_id) VALUES (@prix, @nb_parts, @est_indisponible, @recette_id) RETURNING produit_id;";
+
+            using (NpgsqlCommand cmd = new NpgsqlCommand(req))
+            {
+                cmd.Parameters.Add("@prix", NpgsqlTypes.NpgsqlDbType.Numeric).Value = this.Prix;
+                cmd.Parameters.Add("@nb_parts", NpgsqlTypes.NpgsqlDbType.Integer).Value = this.Nb_parts;
+                cmd.Parameters.Add("@est_indisponible", NpgsqlTypes.NpgsqlDbType.Boolean).Value = this.Est_indisponible;
+
+                // ID de la recette choisie dans le ComboBox
+                // cmd.Parameters.Add("@recette_id", NpgsqlTypes.NpgsqlDbType.Integer).Value = this.Recette_id;
+
+                // On utilise ExecuteInsert de votre DataAccess pour récupérer l'ID
+                int idInsere = DataAccess.ExecuteInsert(cmd);
+                this.Produit_id = idInsere;
+
+                return idInsere;
+            }
         }
 
         public int Delete()
@@ -197,9 +214,22 @@ namespace PAUL_DAMHANE_BETEND
             throw new NotImplementedException();
         }
 
-        public int Update()
+        public Int32 Update()
         {
-            throw new NotImplementedException();
+            // On met à jour le prix, le nombre de parts et le booléen d'indisponibilité requis par le sujet
+            string req = "UPDATE produit SET prix = @prix, nb_parts = @nb_parts, est_indisponible = @est_indisponible WHERE produit_id = @id;";
+
+            using (NpgsqlCommand cmd = new NpgsqlCommand(req))
+            {
+                // Forçage strict des types PostgreSQL
+                cmd.Parameters.Add("@prix", NpgsqlTypes.NpgsqlDbType.Numeric).Value = this.Prix; // ou .Money selon votre BDD
+                cmd.Parameters.Add("@nb_parts", NpgsqlTypes.NpgsqlDbType.Integer).Value = this.Nb_parts;
+                cmd.Parameters.Add("@est_indisponible", NpgsqlTypes.NpgsqlDbType.Boolean).Value = this.Est_indisponible;
+                cmd.Parameters.Add("@id", NpgsqlTypes.NpgsqlDbType.Integer).Value = this.Produit_id;
+
+                // Exécution via votre passerelle DataAccess
+                return DataAccess.ExecuteSet(cmd);
+            }
         }
     }
 }

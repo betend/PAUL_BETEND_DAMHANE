@@ -46,40 +46,40 @@ namespace PAUL_BETEND_DAMHANE
 
         }
 
-        //public void ConnexionEmploye(string loginTape)
-        //{
-        //    if (laGestionPaul == null || laGestionPaul.LesEmployes == null)
-        //    {
-        //        MessageBox.Show("Erreur de chargement des employés.");
-        //        return;
-        //    }
+        public void ConnexionEmploye(string loginTape)
+        {
+            if (laGestionPaul == null || laGestionPaul.LesEmployes == null)
+            {
+                MessageBox.Show("Erreur de chargement des employés.");
+                return;
+            }
 
-        //    // Recherche de l'employé avec correspondance exacte de colonnes de ta table
-        //    Employe emp = laGestionPaul.LesEmployes.FirstOrDefault(e => string.Equals(e.Employe_login, loginTape, StringComparison.OrdinalIgnoreCase));
+            // Recherche de l'employé avec correspondance exacte de colonnes de ta table
+            Employe emp = laGestionPaul.LesEmployes.FirstOrDefault(e => string.Equals(e.Employe_login, loginTape, StringComparison.OrdinalIgnoreCase));
 
-        //    if (emp != null)
-        //    {
-        //        // Vérification du statut selon ta base de données ("vendeur" ou "chef patissier")
-        //        if (string.Equals(emp.Employe_role, "chef patissier", StringComparison.OrdinalIgnoreCase))
-        //        {
-        //            MessageBox.Show($"Bonjour {emp.Employe_login} ! Vous êtes connecté.", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
-        //            AfficheUCCommandeCP();
-        //        }
-        //        else if (string.Equals(emp.Employe_role, "vendeur", StringComparison.OrdinalIgnoreCase))
-        //        {
-        //            MessageBox.Show($"Bonjour {emp.Employe_login} ! Vous êtes connecté.", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
-        //            AfficheUCCommandeV();
-        //        }
-        //        else
-        //        {
-        //            MessageBox.Show("Statut d'employé inconnu.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Warning);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("Identifiant incorrect.", "Échec de connexion", MessageBoxButton.OK, MessageBoxImage.Error);
-        //    }
-        //}
+            if (emp != null)
+            {
+                // Vérification du statut selon ta base de données ("vendeur" ou "chef patissier")
+                if (string.Equals(emp.Employe_role, "chef patissier", StringComparison.OrdinalIgnoreCase))
+                {
+                    MessageBox.Show($"Bonjour {emp.Employe_login} ! Vous êtes connecté.", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
+                    AfficheUCCommandeCP();
+                }
+                else if (string.Equals(emp.Employe_role, "vendeur", StringComparison.OrdinalIgnoreCase))
+                {
+                    MessageBox.Show($"Bonjour {emp.Employe_login} ! Vous êtes connecté.", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
+                    AfficheUCCommandeV();
+                }
+                else
+                {
+                    MessageBox.Show("Statut d'employé inconnu.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Identifiant incorrect.", "Échec de connexion", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
 
         public void AfficheUCBienvenue()
         {

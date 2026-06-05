@@ -28,42 +28,24 @@ namespace PAUL_BETEND_DAMHANE
             _mainWindow = mainWindow;
         }
 
+
+
         private void butConnexion_Click(object sender, RoutedEventArgs e)
         {
-            string loginTape = txtboxLogin.Text.Trim();
+            //On récupère le texte écrit dans la TextBox du Login de ton écran
+            //Remplace 'txtboxLogin' par le x: Name exact de ta TextBox de saisie
+            string login = txtboxLogin.Text.Trim();
 
+            if (string.IsNullOrEmpty(login))
+            {
+                MessageBox.Show("Veuillez saisir votre identifiant.", "Saisie obligatoire", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
 
-            if (loginTape == "1")
-            {
-                LoginReussi?.Invoke(this, EventArgs.Empty);
-                _mainWindow.AfficheUCCommandeV();
-            }
-            else if (loginTape == "2")
-            {
-                LoginReussi?.Invoke(this, EventArgs.Empty);
-                _mainWindow.AfficheUCCommandeCP();
-            }
-            else
-                MessageBox.Show("Identifiants incorrects.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            // On passe le relais à la MainWindow qui stocke la liste globale des employés
+            _mainWindow.ConnexionEmploye(login);
+
 
         }
-
-        //private void butConnexion_Click(object sender, RoutedEventArgs e)
-        //{
-        //    // On récupère le texte écrit dans la TextBox du Login de ton écran
-        //    // Remplace 'txtboxLogin' par le x:Name exact de ta TextBox de saisie
-        //    //string login = txtboxLogin.Text.Trim();
-
-        //    //if (string.IsNullOrEmpty(login))
-        //    //{
-        //    //    MessageBox.Show("Veuillez saisir votre identifiant.", "Saisie obligatoire", MessageBoxButton.OK, MessageBoxImage.Warning);
-        //    //    return;
-        //    //}
-
-        //    //// On passe le relais à la MainWindow qui stocke la liste globale des employés
-        //    //_mainWindow.ConnexionEmploye(login);
-
-
-        //}
     }
 }
