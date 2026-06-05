@@ -26,6 +26,13 @@
                 <DataGridTextColumn Header="Date_retrait" Binding="{Binding Date_retrait, ValidatesOnExceptions=true}" Width="*"/>
                 <DataGridTextColumn Header="Catégorie" Binding="{Binding UneCategorie_evenement.Categorie_evenement_nom, ValidatesOnExceptions=true}" Width="*"/>
                 <DataGridTextColumn Header="Statut" Binding="{Binding Est_recuperee, ValidatesOnExceptions=true}" Width="*"/>
+                <DataGridTemplateColumn Header="Recuperee" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox x:Name="checkValiderCommande" IsChecked="{Binding Est_recuperee, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="Valider" HorizontalAlignment="Center" VerticalAlignment="Center" Click="checkValiderCommande_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
 
             </DataGrid.Columns>
             <DataGrid.ColumnHeaderStyle>

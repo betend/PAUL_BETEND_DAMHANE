@@ -46,14 +46,14 @@
                     <ComboBoxItem Content="Buffet entreprise"/>
                 </ComboBox>
                 <Label Content="Nombre de personnes"  Margin="40,20,0,0" HorizontalAlignment="center"  Grid.Row="1" VerticalAlignment="Top" Width="138" />
-                <TextBox TextWrapping="Wrap" Text="" Margin="100,0,0,0" Width="190" Height="25" Grid.Row="1"/>
+                <TextBox x:Name="txtNbPersonnes" TextWrapping="Wrap" Text="" Margin="100,0,0,0" Width="190" Height="25" Grid.Row="1"/>
 
             </StackPanel>
             <StackPanel  Grid.Column="1" >
                 <Label Content="Date de retrait" Width="138"  Margin="-175,20,0,0" />
                 <DatePicker x:Name="dpDateRetrait"  HorizontalAlignment="left" Width="190"  Margin="50,0,0,0" Height="25"/>        
                 <Label Content="Date de l'événement" HorizontalAlignment="center" Margin="-175,20,0,0"  Grid.Row="1" VerticalAlignment="Top" Width="138" />
-                <DatePicker  HorizontalAlignment="left" Width="190"   Height="25" Margin="50,0,0,0" />           
+                <DatePicker x:Name="dpDateEvenement"  HorizontalAlignment="left" Width="190"   Height="25" Margin="50,0,0,0" />           
             </StackPanel>
         </Grid>
         <Button x:Name="butCreerCommande" Content="Créer" Margin="0,40,0,0"  Height="38" Width="168" Background="Black" Foreground="White" Click="butCreerCommande_Click"/>

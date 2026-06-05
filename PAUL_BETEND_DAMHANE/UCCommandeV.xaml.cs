@@ -118,7 +118,44 @@ namespace PAUL_BETEND_DAMHANE
         }
 
 
-        
+        private void checkValiderCommande_Click(object sender, RoutedEventArgs e)
+        {
+            CheckBox cb = sender as CheckBox;
+            if (cb == null) return;
+
+            Commande commandeSelectionnee = cb.DataContext as Commande;
+            if (commandeSelectionnee == null) return;
+
+            // On met à jour l'état de l'objet
+            commandeSelectionnee.Est_recuperee = (cb.IsChecked == true);
+
+            // ========================================================
+            // VÉRIFICATION DU RETOUR DE LA BASE DE DONNÉES
+            // ========================================================
+            int resultat = commandeSelectionnee.Update();
+
+            if (resultat > 0)
+            {
+                // Optionnel : un petit message de confirmation (pas forcément nécessaire à chaque clic)
+                // MessageBox.Show("Statut mis à jour avec succès en base !", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                // ALERTE : La base de données n'a pas pris en compte la modification
+                MessageBox.Show(
+                    "Erreur : La mise à jour en base de données a échoué. Veuillez réessayer.",
+                    "Erreur de sauvegarde",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error
+                );
+
+                // Annuler visuellement le cochage/décochage puisque la BDD a échoué
+                cb.IsChecked = !cb.IsChecked;
+                commandeSelectionnee.Est_recuperee = (cb.IsChecked == true);
+            }
+
+            RafraichirVue();
+        }
 
         private void CheckBox_Click(object sender, RoutedEventArgs e)
         {

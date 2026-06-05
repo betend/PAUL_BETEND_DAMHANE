@@ -93,6 +93,11 @@ namespace PAUL_DAMHANE_BETEND
 
             set
             {
+                // Règle métier : La date de retrait ne peut pas être inférieure à la date de l'événement
+                if (this.date_evenement != default && value < this.date_evenement)
+                {
+                    throw new ArgumentException("La date de retrait ne peut pas être antérieure à la date de l'événement.");
+                }
                 this.date_retrait = value;
             }
         }
@@ -171,6 +176,11 @@ namespace PAUL_DAMHANE_BETEND
 
             set
             {
+                // Règle métier : Une commande est forcément pour au moins 1 personne
+                if (value <= 0)
+                {
+                    throw new ArgumentException("Le nombre de personnes doit être strictement supérieur à 0.");
+                }
                 this.nb_personne = value;
             }
         }
@@ -289,17 +299,16 @@ namespace PAUL_DAMHANE_BETEND
         public Int32 Update()
         {
             // 1. On prépare la requête SQL
-            string req = "UPDATE commande SET est_recuperee = @est_recuperee WHERE commande_id = @id";
+            string req = "UPDATE commande SET est_recuperee = @est_recuperee WHERE commande_id = @id;";
 
-            // 2. On instancie la commande Npgsql sans lui passer de connexion manuellement
+            // 2. On instancie la commande Npgsql
             NpgsqlCommand cmd = new NpgsqlCommand(req);
 
-            // 3. On ajoute les paramètres sécurisés
-            cmd.Parameters.AddWithValue("@est_recuperee", this.Est_recuperee);
-            cmd.Parameters.AddWithValue("@id", this.Commande_id);
+            // 3. CORRECTION : On force le type de données PostgreSQL de manière stricte
+            cmd.Parameters.Add("@est_recuperee", NpgsqlTypes.NpgsqlDbType.Boolean).Value = this.Est_recuperee;
+            cmd.Parameters.Add("@id", NpgsqlTypes.NpgsqlDbType.Integer).Value = this.Commande_id;
 
-            // 4. On utilise ton DataAccess pour exécuter le tout proprement
-            // La méthode ExecuteSet va s'occuper d'ouvrir la connexion et d'exécuter la requête
+            // 4. On utilise DataAccess pour exécuter la commande
             Int32 nbLignesModifiees = DataAccess.ExecuteSet(cmd);
 
             return nbLignesModifiees;
