@@ -44,7 +44,26 @@ namespace PAUL_BETEND_DAMHANE
 
         private void butSuivant_Click(Object sender, RoutedEventArgs e)
         {
-            _mainWindow.AfficheUCCréerCommandeV();   
+            // 1. On récupère le contexte global de gestion (qui contient le panier)
+            var gestion = App.Current.MainWindow.DataContext as GestionPAUL;
+
+            // 2. Sécurité : On vérifie si la liste des lignes de commande existe et si elle contient au moins un article
+            if (gestion?.CommandeEnCours?.LesLignesCommande == null || gestion.CommandeEnCours.LesLignesCommande.Count == 0)
+            {
+                // 3. Si le panier est vide, on affiche le message d'avertissement
+                MessageBox.Show(
+                    "Votre panier est vide. Veuillez sélectionner au moins un article dans le catalogue avant de valider la commande !",
+                    "Panier vide",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning
+                );
+
+                // 4. On utilise un "return" pour stopper la méthode ici et empêcher l'affichage de l'écran suivant
+                return;
+            }
+
+            // 5. Si le panier contient des articles, on passe normalement à l'étape suivante
+            _mainWindow.AfficheUCCréerCommandeV();
         }
 
 
