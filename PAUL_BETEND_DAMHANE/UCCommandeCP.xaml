@@ -46,7 +46,7 @@
         <Button x:Name="butOngletCommandes" Content="Commandes" HorizontalAlignment="Left" Margin="271,85,0,0" VerticalAlignment="Top" Background="Transparent" FontFamily="Garamond" Foreground="#FFF5E6D3" BorderBrush="Transparent" FontSize="16" Click="butOngletCommandes_Click"/>
         <Button x:Name="butOngletCatalogue" Content="Catalogue" HorizontalAlignment="Left" Margin="461,85,0,0" VerticalAlignment="Top" Background="Transparent" FontFamily="Garamond" Foreground="#FFF5E6D3" BorderBrush="Transparent" FontSize="16" />
         <TextBox x:Name="txtboxRecherche" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="348" Foreground="#FF737171" FontFamily="Garamond" Height="28" FontSize="24" TextAlignment="Justify" Margin="0,171,0,0"/>
-        <Button x:Name="butLogOut"  HorizontalAlignment="Left" Margin="765,80,0,0" VerticalAlignment="Top" Height="30" Width="24" BorderBrush="{x:Null}" RenderTransformOrigin="0.417,0.425" Click="butLogOut_Click">
+        <Button x:Name="butLogOut"  HorizontalAlignment="Left" Margin="765,80,0,0" VerticalAlignment="Top" Height="30" Width="24" BorderBrush="{x:Null}" RenderTransformOrigin="0.417,0.425" Click="butLogOut_Click" ToolTip="Se déconnecter">
             <Button.Background>
                 <ImageBrush ImageSource="/se-deconnecter.png"/>
             </Button.Background>

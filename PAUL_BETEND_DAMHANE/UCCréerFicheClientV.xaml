@@ -15,7 +15,7 @@
             <Label x:Name="labOngletAccueil" Content="Accueil" HorizontalAlignment="Left" Margin="215,82,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF5E6D3" FontFamily="Garamond" FontSize="16"/>
             <Label x:Name="labOngletCatalogue" Content="Catalogue" HorizontalAlignment="Center" Margin="0,82,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF5E6D3" FontFamily="Garamond" FontSize="16"/>
             <Label x:Name="labOngletCommandes" Content="Commande" HorizontalAlignment="Left" Margin="524,82,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF5E6D3" FontFamily="Garamond" FontSize="16"/>
-            <Button x:Name="butLogOut"  HorizontalAlignment="Left" Margin="765,80,0,0" VerticalAlignment="Top" Height="30" Width="24" BorderBrush="{x:Null}" RenderTransformOrigin="0.417,0.425" Click="butLogOut_Click">
+            <Button x:Name="butLogOut"  HorizontalAlignment="Left" Margin="765,80,0,0" VerticalAlignment="Top" Height="30" Width="24" BorderBrush="{x:Null}" RenderTransformOrigin="0.417,0.425" Click="butLogOut_Click" ToolTip="Se déconnecter">
                 <Button.Background>
                     <ImageBrush ImageSource="/se-deconnecter.png"/>
                 </Button.Background>

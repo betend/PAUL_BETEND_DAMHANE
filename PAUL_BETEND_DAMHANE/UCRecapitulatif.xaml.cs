@@ -70,7 +70,7 @@ namespace PAUL_BETEND_DAMHANE
 
 
       
-        private void BtnPlus_Click(object sender, RoutedEventArgs e)
+        private void butPlus_Click(object sender, RoutedEventArgs e)
 
         {
 
@@ -87,7 +87,7 @@ namespace PAUL_BETEND_DAMHANE
 
         }
 
-        private void BtnMoins_Click(object sender, RoutedEventArgs e)
+        private void butMoins_Click(object sender, RoutedEventArgs e)
 
         {
 
@@ -125,7 +125,7 @@ namespace PAUL_BETEND_DAMHANE
             }
         }        
 
-        private void BtnSupprimer_Click(object sender, RoutedEventArgs e)
+        private void butSupprimer_Click(object sender, RoutedEventArgs e)
         {
             LigneCommande ligne = ((FrameworkElement)sender).DataContext as LigneCommande;
             if (ligne != null)
@@ -143,5 +143,34 @@ namespace PAUL_BETEND_DAMHANE
                 }
             }
         }
+
+        private void butValiderCommande_Click(Object sender, RoutedEventArgs e)
+        {
+            // 1. On récupère le contexte global de gestion
+            var gestion = App.Current.MainWindow.DataContext as GestionPAUL;
+
+            // 2. Sécurité : On vérifie si toutes les lignes ont été supprimées
+            if (gestion?.CommandeEnCours?.LesLignesCommande == null || gestion.CommandeEnCours.LesLignesCommande.Count == 0)
+            {
+                // 3. Si le panier est vide, on affiche le message d'erreur et on bloque
+                MessageBox.Show(
+                    "Impossible de valider la commande car le panier ne contient plus aucun article !",
+                    "Panier vide",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning
+                );
+
+                // 4. On stoppe immédiatement l'exécution de la méthode
+                return;
+            }
+
+            // 5. Insère ici ton code existant ou futur pour enregistrer la commande en base de données
+            // Exemple : 
+            // gestion.CommandeEnCours.Save();
+            // _mainWindow.AfficheUCEcranSuivant();
+            MessageBox.Show("Le panier a été validé avec succès !");
+        }
+
+        
     }
 }

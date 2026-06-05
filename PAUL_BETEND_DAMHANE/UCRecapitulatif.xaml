@@ -14,6 +14,7 @@
         <Image x:Name="iconUtilisateur" Margin="0,10,10,0" Source="/Icon/utilisateur.png" Stretch="Fill" HorizontalAlignment="Right" Width="50" Height="50" VerticalAlignment="Top"/>
         <Label x:Name="labNomUtilisateur" Content="Un nom" HorizontalAlignment="Left" Margin="740,56,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF5E6D3" FontFamily="Garamond"/>
         <Button x:Name="butAjouterAuPanier" Content="Ajouter au panier" HorizontalAlignment="Left" Margin="613,318,0,0" VerticalAlignment="Top" Background="#FF1E1E1E" FontFamily="Garamond" Foreground="#FFF5E6D3" BorderBrush="Transparent" FontSize="16"  Width="134"/>
+        <Button x:Name="butValiderCommande" Content="Valider le panier" HorizontalAlignment="Left" Margin="613,363,0,0" VerticalAlignment="Top" Background="#FF1E1E1E" FontFamily="Garamond" Foreground="#FFF5E6D3" BorderBrush="Transparent" FontSize="16"  Width="134" Click="butValiderCommande_Click"/>
 
         <DataGrid x:Name="dgRecapitulatif"   IsReadOnly="True" ItemsSource="{Binding CommandeEnCours.LesLignesCommande}"  Margin="-2,233,279,0" AutoGenerateColumns="False" BorderBrush="Black" Background="{x:Null}" Height="215"  Width ="500" VerticalAlignment="Top"   >
             <DataGrid.Columns>
@@ -22,9 +23,9 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Button Content="-" Click="BtnMoins_Click" Width="25" Background="Black" Foreground="White"/>
+                                <Button x:Name="butMoins" Content="-" Click="butMoins_Click" Width="25" Background="Black" Foreground="White" ToolTip="Retirer"/>
                                 <TextBlock Text="{Binding Quantite}" Margin="8,0" VerticalAlignment="Center"/>
-                                <Button Content="+" Click="BtnPlus_Click" Width="25" Background="Black" Foreground="White"/>
+                                <Button x:Name="butPlus" Content="+" Click="butPlus_Click" Width="25" Background="Black" Foreground="White" ToolTip="Ajouter"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -38,7 +39,7 @@
                 <DataGridTemplateColumn Header="">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Click="BtnSupprimer_Click" ToolTip="Supprimer" Width="30" Height="30" FontFamily="Segoe MDL2 Assets" Content="&#xE74D;" Background="Black" Foreground="White" />
+                            <Button x:Name="butSupprimer" Click="butSupprimer_Click" ToolTip="Supprimer" Width="30" Height="30" FontFamily="Segoe MDL2 Assets" Content="&#xE74D;" Background="Black" Foreground="White" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -58,7 +59,7 @@
 
         </DataGrid>
         <Label x:Name="labTitreCatalogue" Content="Récapitulatif de la commande" HorizontalAlignment="Center" Margin="0,132,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="Black" FontFamily="Georgia" FontSize="30"/>
-        <Button x:Name="butLogOut"  HorizontalAlignment="Left" Margin="765,80,0,0" VerticalAlignment="Top" Height="30" Width="24" BorderBrush="{x:Null}" RenderTransformOrigin="0.417,0.425" Click="butLogOut_Click">
+        <Button x:Name="butLogOut"  HorizontalAlignment="Left" Margin="765,80,0,0" VerticalAlignment="Top" Height="30" Width="24" BorderBrush="{x:Null}" RenderTransformOrigin="0.417,0.425" Click="butLogOut_Click" ToolTip="Se déconnecter">
             <Button.Background>
                 <ImageBrush ImageSource="/se-deconnecter.png"/>
             </Button.Background>
