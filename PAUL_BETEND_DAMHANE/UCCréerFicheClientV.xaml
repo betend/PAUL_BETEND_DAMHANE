@@ -33,18 +33,18 @@
             </Grid.ColumnDefinitions>
             <StackPanel  Grid.Column="0" >
                 <Label Content="Nom"   Margin="40,20,0,0"  Grid.Row="1" VerticalAlignment="Top" Width="138" />
-                <TextBox TextWrapping="Wrap" Text="" Margin="100,0,0,0" Width="190"  Grid.Row="1" Height="25"/>
+                <TextBox TextWrapping="Wrap"  Text="{Binding Nom, ValidatesOnExceptions=True}" Margin="100,0,0,0" Width="190"  Grid.Row="1" Height="25"/>
                 <Label Content="Mail"  Margin="40,20,0,0" HorizontalAlignment="center"  Grid.Row="1" VerticalAlignment="Top" Width="138" />
-                <TextBox TextWrapping="Wrap" Text="" Margin="100,0,0,0" Width="190" Height="25" Grid.Row="1"/>
+                <TextBox TextWrapping="Wrap"  Text="{Binding Mail, ValidatesOnExceptions=True}" Margin="100,0,0,0" Width="190" Height="25" Grid.Row="1"/>
             </StackPanel>
             <StackPanel  Grid.Column="1" >
                 <Label Content="Prénom" Width="138"  Margin="-160,20,0,0" />
-                <TextBox TextWrapping="Wrap" Text=""   Margin="-100,0,0,0" Width="190"  Grid.Row="1" Height="25"/>
+                <TextBox TextWrapping="Wrap"  Text="{Binding Prenom, ValidatesOnExceptions=True}"   Margin="-100,0,0,0" Width="190"  Grid.Row="1" Height="25"/>
                 <Label Content="Téléphone" HorizontalAlignment="center" Margin="-160,20,0,0"  Grid.Row="1" VerticalAlignment="Top" Width="138" />
-                <TextBox TextWrapping="Wrap" Height="25" Text=""  Width="190"  Margin="-100,0,0,0" Grid.Row="1"/>
+                <TextBox TextWrapping="Wrap" Height="25"  Text="{Binding Telephone, ValidatesOnExceptions=True}"  Width="190"  Margin="-100,0,0,0" Grid.Row="1"/>
             </StackPanel>
         </Grid>
-        <Button Content="Créer" Margin="0,40,0,0"  Height="38" Width="168" Background="Black" Foreground="White"/>
+        <Button x:Name="butCreerClient" Content="Créer" Margin="0,40,0,0"  Height="38" Width="168" Background="Black" Foreground="White" Click="butCreerClient_Click"/>
 
     </StackPanel>
 </UserControl>

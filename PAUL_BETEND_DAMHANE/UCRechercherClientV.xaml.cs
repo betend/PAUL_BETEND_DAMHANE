@@ -36,7 +36,7 @@ namespace PAUL_BETEND_DAMHANE
             if (String.IsNullOrEmpty(txtboxRecherche.Text))
                 return true;
             Client unClient = obj as Client;
-            return (unClient.Nom.StartsWith(txtboxRecherche.Text, StringComparison.OrdinalIgnoreCase) || unClient.Prenom.StartsWith(txtboxRecherche.Text, StringComparison.OrdinalIgnoreCase) || unClient.Telephone.StartsWith(txtboxRecherche.Text, StringComparison.OrdinalIgnoreCase));
+           return (unClient.Nom.StartsWith(txtboxRecherche.Text, StringComparison.OrdinalIgnoreCase) || unClient.Prenom.StartsWith(txtboxRecherche.Text, StringComparison.OrdinalIgnoreCase) || unClient.Telephone.StartsWith(txtboxRecherche.Text, StringComparison.OrdinalIgnoreCase));
         }
 
         private void textMotClefClient_TextChanged(object sender, TextChangedEventArgs e)
