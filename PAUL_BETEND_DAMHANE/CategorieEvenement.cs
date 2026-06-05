@@ -26,6 +26,11 @@ namespace PAUL_DAMHANE_BETEND
             this.Categorie_evenement_nom = categorie_evenement_nom;
         }
 
+        public override string ToString()
+        {
+            return this.Categorie_evenement_id + " - " + this.Categorie_evenement_nom;
+        }
+
         public int Categorie_evenement_id
         {
             get

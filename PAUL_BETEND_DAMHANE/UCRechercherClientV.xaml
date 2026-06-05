@@ -18,7 +18,6 @@
             </Button.Background>
         </Button>
         <Image x:Name="iconUtilisateur" Margin="0,10,10,0" Source="/Icon/utilisateur.png" Stretch="Fill" HorizontalAlignment="Right" Width="50" Height="50" VerticalAlignment="Top"/>
-        <Label x:Name="labNomUtilisateur" Content="Un nom" HorizontalAlignment="Left" Margin="740,56,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF5E6D3" FontFamily="Garamond"/>
 
         <DataGrid x:Name="dgRechercheClient"   IsReadOnly="True" ItemsSource="{Binding LesClients}"  Margin="50,256,50,0" Width="500" AutoGenerateColumns="False" BorderBrush="Black" Background="White" Height="215" VerticalAlignment="Top"   >
             <DataGrid.Columns>

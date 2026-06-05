@@ -21,7 +21,6 @@
                 </Button.Background>
             </Button>
             <Image x:Name="iconUtilisateur" Margin="0,10,10,0" Source="/Icon/utilisateur.png" Stretch="Fill" HorizontalAlignment="Right" Width="50" Height="50" VerticalAlignment="Top"/>
-            <Label x:Name="labNomUtilisateur" Content="Un nom" HorizontalAlignment="Left" Margin="740,56,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF5E6D3" FontFamily="Garamond"/>
 
         </Grid>
         <Label Content="Créer une Commande" Width="310" HorizontalAlignment="Center" Margin="0,20,0,0" FontSize="36" FontFamily="Garamond" />
@@ -33,27 +32,21 @@
             </Grid.ColumnDefinitions>
             <StackPanel  Grid.Column="0" >
                 <Label Content="Catégorie de l'événement"   Margin="40,20,0,0"  Grid.Row="1" VerticalAlignment="Top" Width="138" />
-                <ComboBox x:Name="cboCategorie" Width="195" Margin="100,0,0,0">
-                    <ComboBoxItem Content="Mariage"/>
-                    <ComboBoxItem Content="Anniversaire"/>
-                    <ComboBoxItem Content="Bapteme"/>
-                    <ComboBoxItem Content="Naissance"/>
-                    <ComboBoxItem Content="Réunion"/>
-                    <ComboBoxItem Content="Pot de depart"/>
-                    <ComboBoxItem Content="Portes ouvertes"/>
-                    <ComboBoxItem Content="Fete religieuse"/>
-                    <ComboBoxItem Content="Seminaire"/>
-                    <ComboBoxItem Content="Buffet entreprise"/>
-                </ComboBox>
+                <ComboBox x:Name="cboCategorie" ItemsSource="{Binding LesCategorieEvenement , Mode=TwoWay}"
+         SelectedItem="{Binding CommandeEnCours.UneCategorie_evenement, Mode=TwoWay}"
+         DisplayMemberPath="Categorie_evenement_nom"/>
+                
+             
+
                 <Label Content="Nombre de personnes"  Margin="40,20,0,0" HorizontalAlignment="center"  Grid.Row="1" VerticalAlignment="Top" Width="138" />
-                <TextBox x:Name="txtNbPersonnes" TextWrapping="Wrap" Text="" Margin="100,0,0,0" Width="190" Height="25" Grid.Row="1"/>
+                <TextBox x:Name="txtNbPersonnes" Text="{Binding CommandeEnCours.Nb_personne, ValidatesOnExceptions=True, Mode=TwoWay}" TextWrapping="Wrap" Margin="100,0,0,0" Width="190" Height="25" Grid.Row="1"/>
 
             </StackPanel>
             <StackPanel  Grid.Column="1" >
                 <Label Content="Date de retrait" Width="138"  Margin="-175,20,0,0" />
-                <DatePicker x:Name="dpDateRetrait"  HorizontalAlignment="left" Width="190"  Margin="50,0,0,0" Height="25"/>        
+                <DatePicker x:Name="dpDateRetrait" Text="{Binding CommandeEnCours.Date_retrait, ValidatesOnExceptions=True , Mode=TwoWay}" HorizontalAlignment="left" Width="190"  Margin="50,0,0,0" Height="25"/>        
                 <Label Content="Date de l'événement" HorizontalAlignment="center" Margin="-175,20,0,0"  Grid.Row="1" VerticalAlignment="Top" Width="138" />
-                <DatePicker x:Name="dpDateEvenement"  HorizontalAlignment="left" Width="190"   Height="25" Margin="50,0,0,0" />           
+                <DatePicker x:Name="dpDateEvenement"  Text="{Binding CommandeEnCours.Date_evenement, ValidatesOnExceptions=True , Mode=TwoWay}" HorizontalAlignment="left" Width="190"   Height="25" Margin="50,0,0,0" />           
             </StackPanel>
         </Grid>
         <Button x:Name="butCreerCommande" Content="Créer" Margin="0,40,0,0"  Height="38" Width="168" Background="Black" Foreground="White" Click="butCreerCommande_Click"/>

@@ -22,7 +22,7 @@ namespace PAUL_BETEND_DAMHANE
         {
             InitializeComponent();
             _mainWindow = mainWindow;
-            // On enlève la ligne du filtre d'ici pour éviter le plantage au démarrage !
+
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -176,7 +176,7 @@ namespace PAUL_BETEND_DAMHANE
             {
                 ligneExistante.Quantite++;
             }
-            MessageBox.Show("Produit ajouté !");
+
         }
 
         private void butOngletCommandes_Click(object sender, RoutedEventArgs e)

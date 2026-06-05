@@ -38,6 +38,8 @@ namespace PAUL_BETEND_DAMHANE
 
         private void butCreerCommande_Click(Object sender, RoutedEventArgs e)
         {
+
+            UpdateBindingsAndValidate(this);
             // 1. Choix de la catégorie de l'événement
             if (cboCategorie == null || cboCategorie.SelectedItem == null)
             {
@@ -64,7 +66,7 @@ namespace PAUL_BETEND_DAMHANE
             DateTime dateEvenement = dpDateEvenement.SelectedDate.Value;
             DateTime dateRetrait = dpDateRetrait.SelectedDate.Value;
 
-            if (dateRetrait < dateEvenement)
+            if (dateRetrait > dateEvenement)
             {
                 MessageBox.Show("La date de retrait ne peut pas être antérieure à la date de l'événement !", "Incohérence des dates", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -83,9 +85,35 @@ namespace PAUL_BETEND_DAMHANE
                 return;
             }
 
-            // 5. Si toutes les conditions sont validées, on passe à l'étape suivante
-            _mainWindow.AfficheUCRechercherClientV();
-        }
+          
 
+
+        // 5. Si toutes les conditions sont validées, on passe à l'étape suivante
+        _mainWindow.AfficheUCRechercherClientV();
+        }
+        private bool UpdateBindingsAndValidate(DependencyObject parent)
+        {
+            bool ok = true;
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
+            {
+                DependencyObject child = VisualTreeHelper.GetChild(parent, i);
+                if (child is TextBox txt)
+                    txt.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
+                if (child is DatePicker dp)
+                    dp.GetBindingExpression(DatePicker.SelectedDateProperty)?.UpdateSource();
+                if (child is ComboBox cb)
+                    cb.GetBindingExpression(ComboBox.SelectedItemProperty)?.UpdateSource();
+                if (child is CheckBox chk)
+                    chk.GetBindingExpression(CheckBox.IsCheckedProperty)?.UpdateSource();
+                if (child is ValidationErrorEventAction)
+                {
+                }
+                if (child is UIElement uie && Validation.GetHasError(uie))
+                    ok = false;
+                if (!UpdateBindingsAndValidate(child))
+                    ok = false;
+            }
+            return ok;
+        }
     }
 }

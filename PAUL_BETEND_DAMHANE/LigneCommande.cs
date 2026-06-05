@@ -127,12 +127,12 @@ namespace PAUL_BETEND_DAMHANE
         public Int32 Create()
         {
             int nb = 0;
-            using (var cmdInsert = new NpgsqlCommand("insert into chiens (commande_id,produit_id,quantite, est_decoupe  ) values (@commande_id,@produit_id,@quantite, @est_decoupe) RETURNING commande_id"))
+            using (var cmdInsert = new NpgsqlCommand("insert into ligne_commande (commande_id,produit_id,quantite, est_decoupe  ) values (@commande_id,@produit_id,@quantite, @est_decoupe) RETURNING commande_id"))
             {
-                cmdInsert.Parameters.AddWithValue("commande_id", this.Commande_id);
-                cmdInsert.Parameters.AddWithValue("produit_id", this.Produit_id);
-                cmdInsert.Parameters.AddWithValue("quantite", this.Quantite);
-                cmdInsert.Parameters.AddWithValue("est_decoupe", this.Est_decoupe);
+                cmdInsert.Parameters.AddWithValue("@commande_id", this.Commande_id);
+                cmdInsert.Parameters.AddWithValue("@produit_id", this.Produit_id);
+                cmdInsert.Parameters.AddWithValue("@quantite", this.Quantite);
+                cmdInsert.Parameters.AddWithValue("@est_decoupe", this.Est_decoupe);
                 nb = DataAccess.ExecuteInsert(cmdInsert);
             }
             this.Ligne_commande_id = nb;

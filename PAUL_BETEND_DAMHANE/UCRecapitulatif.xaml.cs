@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PAUL_DAMHANE_BETEND;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -165,12 +166,32 @@ namespace PAUL_BETEND_DAMHANE
             }
 
             // 5. Insère ici ton code existant ou futur pour enregistrer la commande en base de données
-            // Exemple : 
-            // gestion.CommandeEnCours.Save();
-            // _mainWindow.AfficheUCEcranSuivant();
-            MessageBox.Show("Le panier a été validé avec succès !");
-        }
 
-        
+            try
+            {
+
+                int idCommande = gestion.CommandeEnCours.Create();
+                gestion.LesCommandes.Add(gestion.CommandeEnCours); // ajout à la liste
+                MessageBox.Show("Commande créé avec succès.");
+
+
+                foreach (LigneCommande uneLigne in gestion.CommandeEnCours.LesLignesCommande)
+
+                {
+
+                    uneLigne.Create();
+
+                }
+                MessageBox.Show("Le panier a été validé avec succès !");
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erreur");
+            }
+
+
+
+        }
     }
 }
