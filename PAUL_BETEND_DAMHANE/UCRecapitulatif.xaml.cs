@@ -178,7 +178,8 @@ namespace PAUL_BETEND_DAMHANE
                 foreach (LigneCommande uneLigne in gestion.CommandeEnCours.LesLignesCommande)
 
                 {
-
+                    //uneLigne.UnProduit = gestion.LesProduits.SingleOrDefault(produit => produit.Produit_id == uneLigne.Produit_id);
+                    
                     uneLigne.Create();
 
                 }

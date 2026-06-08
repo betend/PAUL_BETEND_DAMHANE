@@ -35,13 +35,13 @@ namespace PAUL_DAMHANE_BETEND
             LesLignesCommande = new ObservableCollection<LigneCommande>();
         }
 
-        public Commande(Int32 commande_id, DateOnly date_creation, DateOnly date_retrait, decimal accompte, Boolean est_prete, Boolean est_recuperee, Decimal total, DateOnly date_evenement, Int32 nb_personne)
+        public Commande(Int32 commande_id, DateOnly date_creation, DateOnly date_retrait, decimal acompte, Boolean est_prete, Boolean est_recuperee, Decimal total, DateOnly date_evenement, Int32 nb_personne)
         {
             this.Commande_id = commande_id;
             
             this.Date_creation = date_creation;
             this.Date_retrait = date_retrait;
-            this.Accompte = accompte;
+            this.Acompte = acompte;
             this.Est_prete = est_prete;
             this.Est_recuperee = est_recuperee;
             this.Total = total;
@@ -50,7 +50,7 @@ namespace PAUL_DAMHANE_BETEND
             LesLignesCommande = new ObservableCollection<LigneCommande>();
         }
 
-        public Commande(Int32 commande_id, DateOnly date_creation, DateOnly date_retrait, Decimal accompte, Boolean est_prete, Boolean est_recuperee, Decimal total, DateOnly date_evenement, Int32 nb_personne, Int32 client_id, Int32 categorie_evenement_id) : this(commande_id, date_creation, date_retrait, accompte, est_prete, est_recuperee, total, date_evenement, nb_personne)
+        public Commande(Int32 commande_id, DateOnly date_creation, DateOnly date_retrait, Decimal acompte, Boolean est_prete, Boolean est_recuperee, Decimal total, DateOnly date_evenement, Int32 nb_personne, Int32 client_id, Int32 categorie_evenement_id) : this(commande_id, date_creation, date_retrait, acompte, est_prete, est_recuperee, total, date_evenement, nb_personne)
         {
             this.Client_id = client_id;
             this.Categorie_evenement_id = categorie_evenement_id;
@@ -102,7 +102,7 @@ namespace PAUL_DAMHANE_BETEND
             }
         }
 
-        public decimal Accompte
+        public decimal Acompte
         {
             get
             {
@@ -277,14 +277,14 @@ namespace PAUL_DAMHANE_BETEND
             {
                 cmdInsert.Parameters.AddWithValue("@client_id", this.UnClient.Client_id);
                 cmdInsert.Parameters.AddWithValue("@categorie_evenement_id", this.UneCategorie_evenement.Categorie_evenement_id);
-                cmdInsert.Parameters.AddWithValue("@date_creation", this.date_creation);
-                cmdInsert.Parameters.AddWithValue("@date_retrait", DateOnly.FromDateTime(DateTime.Now));
+                cmdInsert.Parameters.AddWithValue("@date_creation", DateOnly.FromDateTime(DateTime.Now));
+                cmdInsert.Parameters.AddWithValue("@date_retrait", this.Date_retrait);
                 cmdInsert.Parameters.AddWithValue("@acompte", this.calculerAcompte());
-                cmdInsert.Parameters.AddWithValue("@est_prete", this.est_prete);
-                cmdInsert.Parameters.AddWithValue("@est_recuperee", this.est_recuperee);
-                cmdInsert.Parameters.AddWithValue("@total", this.total);
-                cmdInsert.Parameters.AddWithValue("@date_evenement", this.date_evenement);
-                cmdInsert.Parameters.AddWithValue("@nb_personne", this.nb_personne);
+                cmdInsert.Parameters.AddWithValue("@est_prete", false);
+                cmdInsert.Parameters.AddWithValue("@est_recuperee", false);
+                cmdInsert.Parameters.AddWithValue("@total", this.Total);
+                cmdInsert.Parameters.AddWithValue("@date_evenement", this.Date_evenement);
+                cmdInsert.Parameters.AddWithValue("@nb_personne", this.Nb_personne);
                 idGenere = (int)DataAccess.ExecuteInsert(cmdInsert);
             }
             this.commande_id = idGenere;

@@ -39,7 +39,7 @@ namespace PAUL_BETEND_DAMHANE
         private void butCreerCommande_Click(Object sender, RoutedEventArgs e)
         {
 
-            UpdateBindingsAndValidate(this);
+            UpdateBindingsAndValidate(this); // ca permet de lancer la fonction pour rafraichir tous les bindings elle prend en paramettre this = grid ou tout l'UC
             // 1. Choix de la catégorie de l'événement
             if (cboCategorie == null || cboCategorie.SelectedItem == null)
             {
@@ -91,7 +91,7 @@ namespace PAUL_BETEND_DAMHANE
         // 5. Si toutes les conditions sont validées, on passe à l'étape suivante
         _mainWindow.AfficheUCRechercherClientV();
         }
-        private bool UpdateBindingsAndValidate(DependencyObject parent)
+        private bool UpdateBindingsAndValidate(DependencyObject parent) // Permet de rafraichir tout les bindings et de vérifier les erreurs de validation dans tout l'arbre visuel
         {
             bool ok = true;
             for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
@@ -105,8 +105,9 @@ namespace PAUL_BETEND_DAMHANE
                     cb.GetBindingExpression(ComboBox.SelectedItemProperty)?.UpdateSource();
                 if (child is CheckBox chk)
                     chk.GetBindingExpression(CheckBox.IsCheckedProperty)?.UpdateSource();
-                if (child is ValidationErrorEventAction)
+                if (child is ValidationErrorEventAction) // Revoir binding chien partie sur la validation et affichage des erreurs 
                 {
+
                 }
                 if (child is UIElement uie && Validation.GetHasError(uie))
                     ok = false;
