@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
     <Grid>
-        <Rectangle x:Name="rectFondBandeauOnglet" HorizontalAlignment="Center" Height="41" VerticalAlignment="Top" Width="800" Fill="#FF1E1E1E" Margin="0,74,0,0"/>
+        <Rectangle x:Name="rectFondBandeauOnglet" HorizontalAlignment="Center" Height="41" VerticalAlignment="Top" Width="858" Fill="#FF1E1E1E" Margin="0,74,0,0"/>
         <Button x:Name="butOngletCommandes" Content="Commandes" HorizontalAlignment="Left" Margin="202,85,0,0" VerticalAlignment="Top" Background="Transparent" FontFamily="Garamond" Foreground="#FFF5E6D3" BorderBrush="Transparent" FontSize="16" Click="butOngletCommandes_Click"/>
         <Button x:Name="butOngletCatalogue" Content="Catalogue" HorizontalAlignment="Center" Margin="0,85,0,0" VerticalAlignment="Top" Background="Transparent" FontFamily="Garamond" Foreground="#FFF5E6D3" BorderBrush="Transparent" FontSize="16" Click="butOngletCatalogue_Click"/>
         <Button x:Name="butOngletPanier" Content="Panier" HorizontalAlignment="Left" Margin="522,85,0,0" VerticalAlignment="Top" Background="Transparent" FontFamily="Garamond" Foreground="#FFF5E6D3" BorderBrush="Transparent" FontSize="16" Click="butOngletPanier_Click"/>

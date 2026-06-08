@@ -32,7 +32,7 @@
         </DataGrid>
         <Image x:Name="iconLoupe" Margin="0,202,238,0" Source="/Icon/loupe.png" Stretch="Fill" HorizontalAlignment="Right" Width="17" Height="18" VerticalAlignment="Top"/>
         <Label x:Name="labTitreCatalogue" Content="Visualiser le catalogue de produits" HorizontalAlignment="Center" Margin="0,139,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="Black" FontFamily="Georgia" FontSize="20"/>
-        
+
         <ComboBox x:Name="cboCategorie" HorizontalAlignment="Left" Margin="112,253,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cboCategorie_SelectionChanged" >
             <ComboBoxItem Content="Toutes"/>
             <ComboBoxItem Content="Pain"/>
@@ -50,7 +50,7 @@
         <Label Content="Catégorie" HorizontalAlignment="Left" Margin="53,252,0,0" VerticalAlignment="Top" FontFamily="Garamond"/>
         <Label Content="Allergènes" HorizontalAlignment="Left" Margin="254,237,0,0" VerticalAlignment="Top" FontFamily="Garamond"/>
 
-        <Rectangle x:Name="rectFondBandeauOnglet" HorizontalAlignment="Center" Height="41" VerticalAlignment="Top" Width="800" Fill="#FF1E1E1E" Margin="0,74,0,0"/>
+        <Rectangle x:Name="rectFondBandeauOnglet" Height="41" VerticalAlignment="Top" Fill="#FF1E1E1E" Margin="0,74,0,0"/>
         <Button x:Name="butOngletCommandes" Content="Commandes" HorizontalAlignment="Left" Margin="271,85,0,0" VerticalAlignment="Top" Background="Transparent" FontFamily="Garamond" Foreground="#FFF5E6D3" BorderBrush="Transparent" FontSize="16" Click="butOngletCommandes_Click"/>
         <Button x:Name="butOngletCatalogue" Content="Catalogue" HorizontalAlignment="Left" Margin="461,85,0,0" VerticalAlignment="Top" Background="Transparent" FontFamily="Garamond" Foreground="#FFF5E6D3" BorderBrush="Transparent" FontSize="16" Click="butOngletCatalogue_Click" />
         <TextBox x:Name="txtboxRecherche" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="348" Foreground="#FF737171" FontFamily="Garamond" Height="28" FontSize="24" TextAlignment="Justify" Margin="0,197,0,0" TextChanged="textMotClefProduit_TextChanged"/>

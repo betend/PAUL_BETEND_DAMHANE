@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
     <Grid>
-        <Rectangle x:Name="rectFondBandeauOnglet" HorizontalAlignment="Center" Height="41" VerticalAlignment="Top" Width="800" Fill="#FF1E1E1E" Margin="0,74,0,0"/>
+        <Rectangle x:Name="rectFondBandeauOnglet" HorizontalAlignment="Center" Height="41" VerticalAlignment="Top" Width="911" Fill="#FF1E1E1E" Margin="0,74,0,0"/>
         <Button x:Name="butOngletCommandes" Content="Commandes" HorizontalAlignment="Left" Margin="202,85,0,0" VerticalAlignment="Top" Background="Transparent" FontFamily="Garamond" Foreground="#FFF5E6D3" BorderBrush="Transparent" FontSize="16" Click="butOngletCommandes_Click"/>
         <Button x:Name="butOngletCatalogue" Content="Catalogue" HorizontalAlignment="Center" Margin="0,85,0,0" VerticalAlignment="Top" Background="Transparent" FontFamily="Garamond" Foreground="#FFF5E6D3" BorderBrush="Transparent" FontSize="16" Click="butOngletCatalogue_Click"/>
         <Button x:Name="butOngletPanier" Content="Panier" HorizontalAlignment="Left" Margin="522,85,0,0" VerticalAlignment="Top" Background="Transparent" FontFamily="Garamond" Foreground="#FFF5E6D3" BorderBrush="Transparent" FontSize="16" Click="butOngletPanier_Click"/>
@@ -48,7 +48,6 @@
 
         </DataGrid>
         <Label x:Name="labTitreCommandeV" Content="Visualiser les commandes à restituer" HorizontalAlignment="Center" Margin="0,133,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="Black" FontFamily="Georgia" FontSize="20"/>
-        <Button x:Name="butMofifierStatut" Content="&#xE104;" HorizontalAlignment="Left" Margin="740,309,0,0" VerticalAlignment="Top" FontFamily="Segoe MDL2 Assets" Background="#FF1E1E1E" Foreground="#FFF5E6D3" Height="28" Width="32"/>
         <RadioButton x:Name="rbToutes" Content="Toutes" HorizontalAlignment="Left" Margin="39,215,0,0" VerticalAlignment="Top" Checked="RadioFiltre_Checked"/>
         <RadioButton x:Name="rbRecuperees" Content="Récupérées" HorizontalAlignment="Left" Margin="39,237,0,0" VerticalAlignment="Top" Checked="RadioFiltre_Checked"/>
         <RadioButton x:Name="rbNonRecuperees" Content="Non récupérées" HorizontalAlignment="Left" Margin="39,257,0,0" VerticalAlignment="Top" Checked="RadioFiltre_Checked"/>
@@ -65,6 +64,6 @@
         <CheckBox x:Name="chkBuffetEntreprise" Content="Buffet entreprise" HorizontalAlignment="Left" Margin="661,238,0,0" VerticalAlignment="Top" FontFamily="Garamond" FontSize="14" Checked="CheckBox_Click" Unchecked="CheckBox_Click"/>
 
 
-        <DatePicker x:Name="dpDateRecherche" HorizontalAlignment="Left" VerticalAlignment="Top" Width="165" Height="28" Margin="600,171,0,0" FontFamily="Garamond" FontSize="14" SelectedDateChanged="dpDateRecherche_SelectedDateChanged"/>
+        <DatePicker x:Name="dpDateRecherche" VerticalAlignment="Top" Height="28" Margin="0,171,35,0" FontFamily="Garamond" FontSize="14" SelectedDateChanged="dpDateRecherche_SelectedDateChanged" HorizontalAlignment="Right" Width="165"/>
     </Grid>
 </UserControl>

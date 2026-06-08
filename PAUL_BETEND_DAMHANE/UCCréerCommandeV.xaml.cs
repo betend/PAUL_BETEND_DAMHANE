@@ -116,5 +116,21 @@ namespace PAUL_BETEND_DAMHANE
             }
             return ok;
         }
+
+        private void butOngletCommandes_Click(object sender, RoutedEventArgs e)
+        {
+            _mainWindow.AfficheUCCommandeV();
+        }
+
+        private void butOngletPanier_Click(object sender, RoutedEventArgs e)
+        {
+            _mainWindow.AfficheUCPanier();
+        }
+
+        private void butOngletCatalogue_Click(object sender, RoutedEventArgs e)
+        {
+            _mainWindow.AfficheUCCatalogueV();
+        }
+
     }
 }

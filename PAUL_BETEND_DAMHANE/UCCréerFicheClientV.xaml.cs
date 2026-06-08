@@ -34,6 +34,22 @@ namespace PAUL_BETEND_DAMHANE
             DataContext = UnClient;
         }
 
+        private void butOngletCommandes_Click(object sender, RoutedEventArgs e)
+        {
+            _mainWindow.AfficheUCCommandeV();
+        }
+
+        private void butOngletPanier_Click(object sender, RoutedEventArgs e)
+        {
+            _mainWindow.AfficheUCPanier();
+        }
+
+        private void butOngletCatalogue_Click(object sender, RoutedEventArgs e)
+        {
+            _mainWindow.AfficheUCCatalogueV();
+        }
+
+
 
 
         private void butLogOut_Click(Object sender, RoutedEventArgs e)
@@ -60,6 +76,8 @@ namespace PAUL_BETEND_DAMHANE
             {
                 MessageBox.Show(ex.Message, "Erreur");
             }
+
+            _mainWindow.AfficheUCRechercherClientV();
         }
     }
 

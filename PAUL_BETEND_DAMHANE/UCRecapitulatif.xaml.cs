@@ -175,15 +175,16 @@ namespace PAUL_BETEND_DAMHANE
                 MessageBox.Show("Commande créé avec succès.");
 
 
-                foreach (LigneCommande uneLigne in gestion.CommandeEnCours.LesLignesCommande)
+                //foreach (LigneCommande uneLigne in gestion.CommandeEnCours.LesLignesCommande)
 
-                {
-                    //uneLigne.UnProduit = gestion.LesProduits.SingleOrDefault(produit => produit.Produit_id == uneLigne.Produit_id);
+                //{
+                //    //uneLigne.UnProduit = gestion.LesProduits.SingleOrDefault(produit => produit.Produit_id == uneLigne.Produit_id);
                     
-                    uneLigne.Create();
+                //    uneLigne.Create();
 
-                }
-                MessageBox.Show("Le panier a été validé avec succès !");
+                //}
+                //MessageBox.Show("Le panier a été validé avec succès !");
+
             }
 
             catch (Exception ex)
@@ -191,7 +192,7 @@ namespace PAUL_BETEND_DAMHANE
                 MessageBox.Show(ex.Message, "Erreur");
             }
 
-
+            _mainWindow.AfficheUCCommandeV();
 
         }
     }
